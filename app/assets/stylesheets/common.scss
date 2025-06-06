@@ -1,0 +1,64 @@
+$primary-color :#9E9E9E;
+$second-color :#333333;
+
+body {
+  margin: 0;
+}
+
+.fv {
+  margin-bottom: 25px;
+}
+
+.container {
+  padding: 0 15px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.text {
+  border: 15px;
+  border-color: black;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: $second-color;
+  padding: 10px 0px;
+
+  border: none;              
+  border-bottom: 1px solid $primary-color;
+  border-radius: 0;
+  outline: none;
+  background: transparent; 
+
+}
+
+.label-field {
+  font-size: 11px;
+  color: $primary-color;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.link {
+  text-decoration: none;
+  color: rgba(204, 204, 204, 1);
+  font-size: 11px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions {
+  margin-top: 100px;
+}
+
+.btn {
+  width: 100%;
+  background-color: rgba(255, 230, 0, 1);
+  border: none;
+  padding: 15px 30px
+
+}
