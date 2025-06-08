@@ -109,10 +109,7 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.3)
     erb (5.0.1)
-    erb2haml (0.1.5)
-      html2haml
     erubi (1.13.1)
-    erubis (2.7.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -127,15 +124,11 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    hamlit (3.0.3)
-      temple (>= 0.8.2)
-      thor
-      tilt
-    html2haml (2.3.0)
-      erubis (~> 2.7.0)
-      haml (>= 4.0)
-      nokogiri (>= 1.6.0)
-      ruby_parser (~> 3.5)
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -288,9 +281,6 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
-    ruby_parser (3.21.1)
-      racc (~> 1.5)
-      sexp_processor (~> 4.16)
     rubyzip (2.4.1)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -307,7 +297,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sexp_processor (4.17.3)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -366,8 +355,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  erb2haml
-  hamlit
+  haml-rails
   importmap-rails
   jbuilder
   pg (~> 1.1)
