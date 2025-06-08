@@ -34,6 +34,7 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'sassc-rails'
 gem 'haml-rails'
+gem 'annotate'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
