@@ -33,6 +33,7 @@ gem "bootsnap", require: false
 
 gem 'devise'
 gem 'sassc-rails'
+gem 'hamlit'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -51,6 +52,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'erb2haml'
 end
 
 group :test do
