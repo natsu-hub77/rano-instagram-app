@@ -1,0 +1,16 @@
+.fv
+  = image_tag "sign_view.jpg", alt: "Log In画像", class: "sign_img", width: "100%"
+.container
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email, class: "label-field"
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email" , class: "text"
+    .field
+      = f.label :password, class: "label-field"
+      %br/
+      = f.password_field :password, autocomplete: "current-password", class: "text"
+    .field
+      = link_to "Forgot password?", new_password_path(resource_name), class: "link"
+    .actions
+      = f.submit "LOGIN", class: "btn"
