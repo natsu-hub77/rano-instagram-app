@@ -1,1 +1,26 @@
-Profile
+.container.profile_container
+  .account_info 
+    = link_to :back do
+      = image_tag 'Tabs.svg', class: 'header_back'
+    %p.account_name= current_user.account_name
+  =image_tag 'avatar.svg', class: 'avatar_img'
+  .stats-container
+    .stat
+      .stat-number 44
+      .stat-label Posts
+    .stat
+      .stat-number 110
+      .stat-label Followers
+    .stat
+      .stat-number 44
+      .stat-label Following
+  .gallery
+    =image_tag 'posts_1.jpg', class: 'item-large'
+    .gallery-top
+      =image_tag 'posts_2.jpg', class: 'item-up'
+      =image_tag 'posts_3.jpg', class: 'item-up'
+  .gallery
+    .gallery-bottom
+      =image_tag 'posts_4.jpg', class: 'item-bottom'
+      =image_tag 'posts_5.jpg', class: 'item-bottom'
+    =image_tag 'posts_6.jpg', class: 'item-tall'

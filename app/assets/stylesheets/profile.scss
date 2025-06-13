@@ -1,0 +1,117 @@
+.profile_container {
+  font-family: "Poppins", sans-serif;
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.account_info  {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.account_name {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  white-space: nowrap; 
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  justify-content: center;
+
+}
+
+.avatar_img {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #E91E63;
+  border-radius: 50%;  
+  object-fit: cover; 
+  padding: 1px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 30px 30px;
+  gap: 10px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.stat-number {
+  font-weight: bold;
+  font-size: 16px;
+  color: #2d2d2d;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #9E9E9E;
+}
+
+.gallery {
+  max-width: 100%;
+  display: flex;
+  gap: 10px;
+  height: 190px;
+  align-items: center;
+}
+
+.gallery + .gallery {
+  margin: 20px 0px;
+}
+
+.item-large {
+  flex: 6; 
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.gallery-top {
+  flex: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-up {
+  flex: 1;  
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 100%;
+}
+
+.gallery-bottom {
+  flex: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-bottom {
+  flex: 1;  
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.item-tall {
+  flex: 6; 
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
