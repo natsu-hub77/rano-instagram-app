@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   root to: 'timelines#index'
   # resource :posts
-  resource :profile, only: [:show, :edit, :update]
+  resource :profile, only: [:show, :update]
 end
