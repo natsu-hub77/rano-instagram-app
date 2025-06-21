@@ -1,5 +1,20 @@
 {
+  "license": "UNLICENSED",
   "dependencies": {
-    "jquery": "^3.7.1"
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.16",
+    "@rails/webpacker": "^5.4.4",
+    "jquery": "^3.7.1",
+    "stimulus": "^3.2.2",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/plugin-transform-private-methods": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
+    "@webpack-cli/serve": "^3.0.1",
+    "babel-loader": "8.2.5",
+    "webpack-dev-server": "3.11.3"
   }
 }
