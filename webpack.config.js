@@ -2,19 +2,6 @@ const path    = require("path")
 const webpack = require("webpack")
 
 module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        options: {
-          plugins: [
-            '@babel/plugin-proposal-optional-chaining',
-          ],
-        },
-      },
-    ],
-  },
   mode: "production",
   devtool: "source-map",
   entry: {
