@@ -37,15 +37,15 @@ module.exports = function(api) {
       ]
     ].filter(Boolean),
     plugins: [
-      "@babel/plugin-proposal-logical-assignment-operators",
+      "@babel/plugin-transform-logical-assignment-operators",
       "@babel/plugin-transform-private-methods",
-      "@babel/plugin-proposal-private-methods",
+      "@babel/plugin-transform-private-methods",
       [
-        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-transform-class-properties",
         { "loose": true }
       ],
       [
-        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-object-rest-spread",
         { "useBuiltIns": true }
       ]
 
@@ -54,15 +54,15 @@ module.exports = function(api) {
       '@babel/plugin-syntax-dynamic-import',
       isTestEnv && 'babel-plugin-dynamic-import-node',
       '@babel/plugin-transform-destructuring',
-      "@babel/plugin-proposal-optional-chaining",
+      "@babel/plugin-transform-optional-chaining",
       [
-        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-transform-class-properties',
         {
           loose: true
         }
       ],
       [
-        '@babel/plugin-proposal-object-rest-spread',
+        '@babel/plugin-transform-object-rest-spread',
         {
           useBuiltIns: true
         }
