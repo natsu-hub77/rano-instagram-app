@@ -37,6 +37,10 @@ module.exports = function(api) {
       ]
     ].filter(Boolean),
     plugins: [
+      [
+        "@babel/plugin-proposal-nullish-coalescing-operator",
+        { "loose": true }
+      ],
       "@babel/plugin-transform-logical-assignment-operators",
       ['@babel/plugin-transform-private-methods', { loose: true}],
       'babel-plugin-macros',
