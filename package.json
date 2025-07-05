@@ -4,6 +4,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.16",
     "@rails/webpacker": "^5.4.4",
+    "axios": "^1.10.0",
     "jquery": "^3.7.1",
     "stimulus": "^3.2.2",
     "webpack": "4.46.0",
