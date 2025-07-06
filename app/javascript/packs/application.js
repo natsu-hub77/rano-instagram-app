@@ -4,13 +4,8 @@ import "controllers"
 import axios from 'axios'
 import $ from 'jquery'
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   $('.account_name').on('click', () => {
-//     window.alert('CLICKED')
-//   })
-// })
-
 document.addEventListener('DOMContentLoaded', () => {
-  window.alert('DOM LOADED')
-  console.log('aaaaaaa')
+  $('.account_name').on('click', () => {
+    window.alert('CLICKED')
+  })
 })
