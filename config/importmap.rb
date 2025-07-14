@@ -6,3 +6,4 @@ pin '@hotwired/stimulus', to: 'stimulus.min.js'
 pin '@hotwired/stimulus-loading', to: 'stimulus-loading.js'
 pin_all_from 'app/javascript/controllers', under: 'controllers'
 pin "axios", to: "https://cdn.skypack.dev/axios@^1.10.0"
+pin "@rails/ujs", to: "@rails--ujs.js" # @7.1.3
