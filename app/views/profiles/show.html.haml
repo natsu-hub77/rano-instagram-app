@@ -1,0 +1,28 @@
+.container.profile_container
+  .account_info 
+    = link_to :back do
+      = image_tag 'Tabs.svg', class: 'header_back'
+    %p.account_name= current_user.account_name 
+  = form_with( model: @profile, url: profile_path , method:'patch', local: false, id: 'profile-form', html: { multipart: true } ) do |f|
+    = f.file_field :avatar, name: 'profile[avatar]', id:'avatar-input', style: 'display: none;'
+    =image_tag current_user.profile&.avatar&.attached? ? url_for(current_user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;'
+  .stats-container
+    .stat
+      .stat-number 44
+      .stat-label Posts
+    .stat
+      .stat-number 110
+      .stat-label Followers
+    .stat
+      .stat-number 44
+      .stat-label Following
+  .gallery
+    =image_tag 'posts_1.jpg', class: 'item-large'
+    .gallery-top
+      =image_tag 'posts_2.jpg', class: 'item-up'
+      =image_tag 'posts_3.jpg', class: 'item-up'
+  .gallery
+    .gallery-bottom
+      =image_tag 'posts_4.jpg', class: 'item-bottom'
+      =image_tag 'posts_5.jpg', class: 'item-bottom'
+    =image_tag 'posts_6.jpg', class: 'item-tall'
