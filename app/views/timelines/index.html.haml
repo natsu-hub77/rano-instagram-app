@@ -1,1 +1,27 @@
-Posts
+.container
+  = image_tag 'timeline/photo-camera.png'
+  .post_imformation
+    .icon
+      = image_tag 'timeline/post_icon.png' 
+    .post_detail
+      %p Jmax_21
+      %p 3 hours ago
+  .post_img 
+    .img_left 
+      = image_tag 'timeline/Post_img_1.png'
+    .img_right 
+      = image_tag 'timeline/Post_img_2.png'
+      = image_tag 'timeline/Post_img_3.png'
+  .post-actions
+    .like-button
+      = image_tag 'timeline/active-like.png', class: 'active-heart-button' 
+      = image_tag 'timeline/inactive-like.png', class: 'iactive-heart-button'
+    .comment-button 
+      = image_tag 'timeline/comment.png'
+    .share-button 
+      = image_tag 'timeline/share.png'
+    .post_content 
+      %p Jasmine and 12,000 other liked your post 
+      %p Jmax_21 
+      %p Summer holiday :3
+
