@@ -1,0 +1,66 @@
+.timeline-container {
+  font-size: 12px;
+}
+.camera-icon {
+  margin: 40px 0px;
+}
+
+.post_imformation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover; 
+}
+
+.post_detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post-account_name  {
+  font-size: 14px;
+}
+.post_time {
+  font-size: 12px;
+  color: #9E9E9E;
+}
+
+.post_img {
+  max-width: 100%;
+  display: flex;
+  gap: 10px;
+  height: 190px;
+  align-items: center;
+  padding: 15px 0px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+//  .heart-button {
+//   display: none;
+//  }
+
+.post_content {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+p {
+  margin: 0px;
+}
+
+.post-footer {
+  display: flex;
+  gap: 8px;
+}
