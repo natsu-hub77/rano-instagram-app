@@ -1,6 +1,6 @@
 .container.form-container
   .post-nav 
-    = button_tag 'Cancel', type: 'button', class: 'cancel-btn'
+    = link_to 'Cancel', :back, class: 'cancel-btn'
     %p Status 
     = button_tag 'Post', type: 'button', class: 'post-btn'
   .account-imformation

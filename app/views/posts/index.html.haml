@@ -1,5 +1,6 @@
 .container.timeline-container
-  = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
+  = link_to new_post_path do
+    = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
   .post_imformation
     .icon
       = image_tag 'timeline/post_icon.png' 
