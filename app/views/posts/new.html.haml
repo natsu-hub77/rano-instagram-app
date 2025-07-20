@@ -1,0 +1,14 @@
+.container.form-container
+  .post-nav 
+    = button_tag 'Cancel', type: 'button', class: 'cancel-btn'
+    %p Status 
+    = button_tag 'Post', type: 'button', class: 'post-btn'
+  .account-imformation
+    .account_icon 
+      = image_tag 'post-avatar'
+    .account_post_name Jackie Chan 
+  = form_with( model: @post, url: posts_path, method: 'post', local: true ) do |f|
+    = f.text_field :content, class: 'post-content',placeholder: "What's on your mind ?"
+    .file-upload-wrapper 
+      = f.label :images, '+ Album', class: 'upload-label'
+      = f.file_field :images, multiple: true, class: 'hidden-file-field', style: 'display: none;'

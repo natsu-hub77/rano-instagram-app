@@ -35,10 +35,18 @@
 .post_img {
   max-width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 4px;
   height: 190px;
   align-items: center;
   padding: 15px 0px;
+}
+
+.img_right img {
+  display: block;
+  margin-bottom: 4px;
+}
+.img_right img:last-child {
+  margin-bottom: 0;
 }
 
 .post-actions {
@@ -64,3 +72,5 @@ p {
   display: flex;
   gap: 8px;
 }
+
+

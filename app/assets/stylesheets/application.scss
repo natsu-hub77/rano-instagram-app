@@ -1,7 +1,7 @@
 @import 'common';
 @import 'profile';
-@import 'timeline';
-
+@import 'post';
+@import 'form';
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -17,3 +17,8 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+ }
