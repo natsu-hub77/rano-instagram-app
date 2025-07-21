@@ -22,7 +22,7 @@ before_action :authenticate_user!
   def post_params
     params.require(:post).permit(
       :content,
-      :images
+      images: []
     )
   end
 end

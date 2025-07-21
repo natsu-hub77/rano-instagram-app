@@ -2,7 +2,7 @@
   %ul
     - @post.errors.full_messages.each do |message|
       %li= message
-  = form_with( model: @post, url: posts_path, method: 'post', local: true ) do |f|
+  = form_with( model: @post, url: posts_path, method: 'post', local: true, multipart: true ) do |f|
     .post-nav 
       = link_to 'Cancel', :back, class: 'cancel-btn'
       %p Status 

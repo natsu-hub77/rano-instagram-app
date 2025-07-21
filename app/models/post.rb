@@ -24,6 +24,8 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   def must_have_at_least_one_image
-    errors.add(:base, '画像を1枚以上アップロードしてください') unless images.attached?
+    if images.blank?
+      errors.add(:base, '画像を1枚以上アップロードしてください') 
+    end
   end
 end
