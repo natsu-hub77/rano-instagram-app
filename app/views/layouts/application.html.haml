@@ -23,5 +23,7 @@
     %link{:href => "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap", :rel => "stylesheet"}/
   %body
     = yield
-    %p.notice= notice
-    %p.alert= alert
+    - if flash.present?
+      .flash 
+        - flash.each do |key, value|
+          %div{class: key}= value

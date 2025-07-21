@@ -17,6 +17,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  validates :content, presence: true
+  validate :must_have_at_least_one_image
+
   belongs_to :user
   has_many_attached :images
+
+  def must_have_at_least_one_image
+    errors.add(:base, '画像を1枚以上アップロードしてください。') unless images.attached?
+  end
 end
