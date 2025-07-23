@@ -1,6 +1,7 @@
 .timeline-container {
-  font-size: 12px;
+  font-size: 12px; 
 }
+
 .camera-icon {
   margin: 40px 0px;
 }
@@ -12,7 +13,7 @@
   margin-bottom: 15px;
 }
 
-.icon {
+.icon img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -33,31 +34,52 @@
 }
 
 .post_img {
-  max-width: 100%;
+  max-width: 100vw;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   gap: 4px;
-  height: 190px;
   align-items: center;
   padding: 15px 0px;
 }
 
-.img_right img {
+.img_right_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; 
+}
+
+.img_left {
+  width: 198px;
+  height: auto;
+  aspect-ratio: 198 / 225;
+  object-fit: cover;
   display: block;
-  margin-bottom: 4px;
+
 }
-.img_right img:last-child {
-  margin-bottom: 0;
+
+.img_right {
+  width: 198px;
+  height: auto;
+  height: 109px;
+  width: 138px;
+  object-fit: cover;
+  display: block;
 }
+
+// .img_right img {
+//   display: block;
+//   margin-bottom: 4px;
+// }
+// .img_right img:last-child {
+//   margin-bottom: 0;
+// }
 
 .post-actions {
   display: flex;
   gap: 10px;
   margin-top: 15px;
 }
-
-//  .heart-button {
-//   display: none;
-//  }
 
 .post_content {
   margin-top: 10px;
