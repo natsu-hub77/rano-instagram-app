@@ -2,7 +2,7 @@
   = link_to new_post_path do
     = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
   - @posts.each do |post|
-    .post_imformation
+    .post_imformation{id: "post_#{post.id}"}
       .icon
         = image_tag(post.user.profile.avatar) if post.user.profile.avatar.attached?
       .post_detail
@@ -23,8 +23,10 @@
         = image_tag 'timeline/inactive-like.png', class: 'iactive-heart-button heart-button'
       .comment-button 
         = image_tag 'timeline/comment.png'
-      .share-button 
-        = image_tag 'timeline/share.png'
+      - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
+      .share-button
+        = link_to share_url, target: '_blank', rel:"noopener noreferrer", data: { turbo: false, toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do 
+          = image_tag 'timeline/share.png'
     .post_content 
       %p Jasmine and 12,000 other liked your post
       .post-footer 
