@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root to: 'timelines#index'
+  root to: 'posts#index'
+
+  resources :posts, only: [:show, :new, :create]
   # resource :posts
   resource :profile, only: [:show, :update]
 end
