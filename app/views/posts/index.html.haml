@@ -19,10 +19,14 @@
         = image_tag url_for(post.images.third), class: 'img_right'
     .post-actions
       - if user_signed_in?
-        .like-button
-          = link_to post_like_path(post), data: { method: 'post' } do
+        - if current_user.has_liked?(post)
+          .like-button
+            -# = link_to post_like_path(post), data: { method: 'post' } do
             = image_tag 'timeline/active-like.png', class: 'active-heart-button heart-button' 
-            = image_tag 'timeline/inactive-like.png', class: 'inactive-heart-button heart-button'
+        - else 
+          .like-button
+            = link_to post_like_path(post), data: { method: 'post' } do
+              = image_tag 'timeline/inactive-like.png', class: 'inactive-heart-button heart-button'
       .comment-button 
         = image_tag 'timeline/comment.png'
       - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
