@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   resources :posts, only: [:show, :new, :create] do
-    resource :like, only: [:create]
+    resource :like, only: [:create, :destroy]
   end
   
   resource :profile, only: [:show, :update]
