@@ -24,6 +24,10 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many_attached :images
 
+  def like_count
+    likes.count
+  end
+
   def must_have_at_least_one_image
     if images.blank?
       errors.add(:base, '画像を1枚以上アップロードしてください') 
