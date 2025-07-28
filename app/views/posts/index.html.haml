@@ -2,7 +2,7 @@
   = link_to new_post_path do
     = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
   - @posts.each do |post|
-    .post_imformation{id: "post_#{post.id}"}
+    .post_imformation{id: "post_#{post.id}", data: {post_id: post.id}}
       .icon
         = image_tag(post.user.profile.avatar) if post.user.profile.avatar.attached?
       .post_detail

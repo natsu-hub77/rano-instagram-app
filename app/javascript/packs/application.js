@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('turbolinks:load fired');
+  
+  $('.post_imformation').each(function() {
+    const postId = $(this).data('post-id');
+    axios.get(`/posts/${postId}/like`)
+      .then((response) => {
+        console.log('postId:', postId, response )
+      });
+  });
+});
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   const avatarUpload = document.getElementById('avatar-upload');
