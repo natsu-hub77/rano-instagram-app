@@ -46,14 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('turbolinks:load fired');
-  
-  $('.post_imformation').each(function() {
+const handleHeartDisplay = (postElement, hasLiked) => {
+  if (hasLiked) {
+  $(postElement).find('.active-heart-button').removeClass('hidden');
+} else {
+  $(postElement).find('.inactive-heart-button').removeClass('hidden');
+}
+}
+
+document.addEventListener('turbo:load', () => {
+  $('.post-actions').each(function() {
     const postId = $(this).data('post-id');
+    const postElement = $(this);
+
     axios.get(`/posts/${postId}/like`)
       .then((response) => {
-        console.log('postId:', postId, response )
+        const hasLiked = response.data.hasLiked
+        handleHeartDisplay(postElement, hasLiked);
       });
   });
 });
