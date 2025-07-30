@@ -1,5 +1,6 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import Rails from "@rails/ujs"
+axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
 Rails.start()
 import "@hotwired/turbo-rails"
 import "controllers"
@@ -65,6 +66,48 @@ document.addEventListener('turbo:load', () => {
         handleHeartDisplay(postElement, hasLiked);
       });
   });
+
+  $('.post-actions').each(function() {
+    const postId = $(this).data('post-id');
+    const postElement = $(this);
+    
+    $(this).find('.inactive-heart-button').on('click', function(e) {
+      e.preventDefault();
+
+      axios.post(`/posts/${postId}/like`)
+        .then((response) => {
+          if (response.data.status === 'ok') {
+            $('.active-heart-button').removeClass('hidden')
+            $('.inactive-heart-button').addClass('hidden')
+          } 
+        }) 
+        .catch((e) => {
+          window.alert('Error');
+          console.log(e);
+        });
+    });
+  });
+
+  $('.post-actions').each(function() {
+    const postId = $(this).data('post-id');
+    const postElement = $(this);
+  
+    $(this).find('.active-heart-button').on('click', function(e) {
+      e.preventDefault();
+
+      axios.delete(`/posts/${postId}/like`)
+        .then((response) => {
+          if (response.data.status === 'ok') {
+            $('.active-heart-button').addClass('hidden')
+            $('.inactive-heart-button').removeClass('hidden')
+          } 
+        })
+        .catch((e) => {
+          window.alert('Error');
+          console.log(e);
+        });
+      });
+    });
 });
 
 // document.addEventListener('DOMContentLoaded', () => {

@@ -17,11 +17,9 @@
     .post-actions{ data: { post_id: post.id } }
       - if user_signed_in?
         .like-button.hidden.active-heart-button 
-          = link_to post_like_path(post), data: { method: 'delete' } do
-            = image_tag 'timeline/active-like.png', class: 'heart-button' 
+          = image_tag 'timeline/active-like.png', class: 'heart-button' 
         .like-button.hidden.inactive-heart-button 
-          = link_to post_like_path(post), data: { method: 'post' } do
-            = image_tag 'timeline/inactive-like.png', class: 'heart-button'
+          = image_tag 'timeline/inactive-like.png', class: 'heart-button'
       .comment-button 
         = image_tag 'timeline/comment.png'
       - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
