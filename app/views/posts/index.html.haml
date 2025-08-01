@@ -10,17 +10,16 @@
         %p.post_time= I18n.with_locale(:en) { time_ago_in_words(post.created_at) + ' ago' }
     .post_img 
       .img_left_wrapper
-        -# = image_tag 'timeline/Post_img_1.png', class: 'img_left'
         = image_tag url_for(post.images.first), class: 'img_left'
       .img_right_wrapper
-        -# = image_tag 'timeline/Post_img_2.png', class: 'img_right'
-        -# = image_tag 'timeline/Post_img_2.png', class: 'img_right'
         = image_tag url_for(post.images.second), class: 'img_right'
         = image_tag url_for(post.images.third), class: 'img_right'
-    .post-actions
-      .like-button
-        = image_tag 'timeline/active-like.png', class: 'active-heart-button heart-button' 
-        = image_tag 'timeline/inactive-like.png', class: 'iactive-heart-button heart-button'
+    .post-actions{ data: { post_id: post.id } }
+      - if user_signed_in?
+        .like-button.hidden.active-heart-button 
+          = image_tag 'timeline/active-like.png', class: 'heart-button' 
+        .like-button.hidden.inactive-heart-button 
+          = image_tag 'timeline/inactive-like.png', class: 'heart-button'
       .comment-button 
         = image_tag 'timeline/comment.png'
       - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
@@ -28,7 +27,14 @@
         = link_to share_url, target: '_blank', rel:"noopener noreferrer", data: { turbo: false, toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do 
           = image_tag 'timeline/share.png'
     .post_content 
-      %p Jasmine and 12,000 other liked your post
+      - if post.like_count == 0
+        %p No likes yet
+      - elsif post.like_count == 1
+        %p= "#{post.likes.last.user.account_name} liked your post"
+      -else
+        %p= "#{post.likes.last.user.account_name} and #{post.like_count - 1} other liked your post"
       .post-footer 
         %p= post.user.account_name
         %p= post.content
+
+= javascript_pack_tag 'post'

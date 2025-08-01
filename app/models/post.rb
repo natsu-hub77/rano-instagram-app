@@ -21,7 +21,12 @@ class Post < ApplicationRecord
   validate :must_have_at_least_one_image
 
   belongs_to :user
+  has_many :likes, dependent: :destroy
   has_many_attached :images
+
+  def like_count
+    likes.count
+  end
 
   def must_have_at_least_one_image
     if images.blank?
