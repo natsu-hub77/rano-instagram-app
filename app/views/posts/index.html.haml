@@ -20,8 +20,9 @@
           = image_tag 'timeline/active-like.png', class: 'heart-button' 
         .like-button.hidden.inactive-heart-button 
           = image_tag 'timeline/inactive-like.png', class: 'heart-button'
-      .comment-button 
-        = image_tag 'timeline/comment.png'
+      .comment-button
+        =link_to  post_comments_path(post) do
+          = image_tag 'timeline/comment.png'
       - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
       .share-button
         = link_to share_url, target: '_blank', rel:"noopener noreferrer", data: { turbo: false, toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do 

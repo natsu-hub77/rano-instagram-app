@@ -1,0 +1,39 @@
+.container.comment-container
+  %ul
+    - @comment.errors.full_messages.each do |message|
+      %li= message
+  .comment-nav
+    =link_to image_tag('back-btn.png'), :back, class: 'back-btn'
+    %p Comment
+  
+  -# - @comments.each do |comment|
+  .comment-post 
+    .comment-icon 
+      =image_tag('comment-avatar1.png')
+    .comment-body
+      .comment-account-name
+        %p Levack
+      .comment-content 
+        %p The meaning of life, pertains to the signfucance of living or experience in general.
+
+  .comment-post 
+    .comment-icon 
+      =image_tag('comment-avatar2.png')
+    .comment-body
+      .comment-account-name
+        %p Jackie Chan
+      .comment-content 
+        %p The French Revolution constituted.
+
+  = form_with(model: @comment, url: post_comments_path(@comment.post), local: true) do |f|
+    .textarea-wrapper
+      .image-overlay
+        = image_submit_tag("timeline/comment.png")
+      .flex-grow
+        = f.text_area :content, class: 'comment-submit'
+
+
+
+
+
+
