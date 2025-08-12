@@ -1,7 +1,7 @@
 .container.comment-container
   %ul
-    - @comment.errors.full_messages.each do |message|
-      %li= message
+    -# - @comment.errors.full_messages.each do |message|
+    -#   %li= message
   .comment-nav
     =link_to image_tag('back-btn.png'), root_path, class: 'back-btn'
     %p Comment
@@ -16,9 +16,9 @@
         .comment-content 
           %p= comment.content
 
-  = form_with(model: @comment, url: post_comments_path(@comment.post), local: true) do |f|
-    .textarea-wrapper
-      .image-overlay
-        = image_submit_tag("timeline/comment.png")
-      .flex-grow
-        = f.text_area :content, class: 'comment-submit'
+  -# = form_with(model: @comment, url: post_comments_path(@comment.post), local: true) do |f|
+  -#   .textarea-wrapper
+  -#     .image-overlay
+  -#       = image_submit_tag("timeline/comment.png")
+  -#     .flex-grow
+  -#       = f.text_area :content, class: 'comment-submit'
