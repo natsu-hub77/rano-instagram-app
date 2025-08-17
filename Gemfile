@@ -35,6 +35,7 @@ gem 'webpacker', '~> 4.0', '>= 4.0.7'
 gem 'psych', '~> 3.1'
 
 gem 'annotate'
+gem 'active_model_serializers'
 gem 'devise'
 gem 'haml-rails'
 gem 'sassc-rails'
