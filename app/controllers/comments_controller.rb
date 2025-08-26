@@ -14,14 +14,16 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params.merge(user: current_user, post: @post))
+    @comment.save!
 
-    if @comment.save
-      redirect_to post_comments_path(@post), notice: 'コメントを追加しました'
-    else
-      @comments = @post.comments
-      flash.now[:error] = '更新できませんでした'
-      render :index, status: :unprocessable_entity
-    end
+    render json: @comment
+    # if @comment.save
+    #   redirect_to post_comments_path(@post), notice: 'コメントを追加しました'
+    # else
+    #   @comments = @post.comments
+    #   flash.now[:error] = '更新できませんでした'
+    #   render :index, status: :unprocessable_entity
+    # end
   end
 
   private

@@ -9,7 +9,6 @@ axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
-
 import "./profile"
 import "./comment"
 
