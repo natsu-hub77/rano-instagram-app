@@ -44,12 +44,15 @@
 }
 
 .textarea-wrapper {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   display: flex;
   margin: 0px 0px;
   gap: 10px;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
 }
 
 .image-overlay {
@@ -67,7 +70,7 @@
 .comment-submit {
   width: 100%;
   box-shadow: 0px 4px 12px 0px #00000026;
-  border: 0.5px solid rgba(204, 204, 204, 0.5);                  /* 必要に応じて枠線も */
+  border: 0.5px solid rgba(204, 204, 204, 0.5);
   padding: 0.75em 0.5em;
   resize: vertical;
   outline: none;

@@ -8,7 +8,7 @@
   .comments-container
 
   = form_with(model: @comment, url: post_comments_path(@comment.post), local: false) do |f|
-    .textarea-wrapper
+    .textarea-wrapper{class: (@post.comments.size < 8 ? 'fixed-bottom' : nil)}
       .image-overlay
         = image_submit_tag("timeline/comment.png", class: "comment-submit-btn")
       .flex-grow
