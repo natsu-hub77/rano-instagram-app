@@ -45,7 +45,10 @@ document.addEventListener('turbo:load', () => {
 
     $(document).on('click', '.comment-submit-btn', function(e){
       e.preventDefault();
-      const content = $('#comment_content').val()
+      const content = $('#comment_content').val();
+      const dataset = $('#comment-index').data();
+      if (!dataset) return;
+      const postId = dataset.postId;
       if (!content) {
         window.alert('コメントを入力してください')
         return
