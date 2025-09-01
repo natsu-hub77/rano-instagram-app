@@ -21,4 +21,17 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
+  after_create :send_email
+
+  private
+  def send_email
+    mentioner = user
+    mentioned_names = content.scan(/@(\w+)/).flatten
+    mentioned_names.each do |name|
+      mentionee = User.find_by(account_name: name)
+      if mentionee.present?
+        CommentMailer.new_comment(self, mentionee, user).deliver_now
+      end
+    end
+  end
 end
