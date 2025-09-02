@@ -26,5 +26,6 @@ module RanoInstagramApp
 
     config.active_storage.variant_processor = :mini_magick
     config.i18n.default_locale = :ja
+    config.active_job.queue_adapter = :sidekiq
   end
 end
