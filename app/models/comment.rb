@@ -30,7 +30,7 @@ class Comment < ApplicationRecord
     mentioned_names.each do |name|
       mentionee = User.find_by(account_name: name)
       if mentionee.present?
-        CommentMailer.new_comment(self, mentionee, user).deliver_now
+        CommentMailer.new_comment(self, mentionee, user).deliver_later
       end
     end
   end
