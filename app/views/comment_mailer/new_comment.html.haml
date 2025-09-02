@@ -1,0 +1,5 @@
+%p #{@mentionee.account_name} さん
+%p #{@mentioner.account_name}さんがあなたをコメントでメンションしました
+%p= @comment.content
+
+= link_to 'コメントを確認する。', post_comments_url(@post)
