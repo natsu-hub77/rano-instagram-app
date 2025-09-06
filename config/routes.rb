@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     resource :like, only: [:show, :create, :destroy]
     resources :comments, only: [:index, :create]
   end
+
+  resources :accounts, only: [:show]
   resource :profile, only: [:show, :update]
 end

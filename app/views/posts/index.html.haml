@@ -2,9 +2,15 @@
   = link_to new_post_path do
     = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
   - @posts.each do |post|
+    - path = post.user == current_user ? profile_path(current_user) : account_path(post.user)
     .post_imformation{id: "post_#{post.id}"}
       .icon
-        = image_tag(post.user.profile.avatar) if post.user.profile.avatar.attached?
+        - if post.user.profile&.avatar&.attached?
+          = link_to path do
+            = image_tag(post.user.profile.avatar)
+        - else
+          = link_to path do 
+            =image_tag("avatar.svg")
       .post_detail
         %p.post-account_name= post.user.account_name
         %p.post_time= I18n.with_locale(:en) { time_ago_in_words(post.created_at) + ' ago' }
