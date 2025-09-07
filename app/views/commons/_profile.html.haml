@@ -3,10 +3,13 @@
     = link_to :back do
       = image_tag 'Tabs.svg', class: 'header_back'
     %p.account_name= user.account_name
-    - unless user == current_user  
-      = link_to 'Follow', '#', class: 'follow-btn' 
+    - unless user == current_user
+      - if current_user&.has_followed?(user)
+        %p.follow-btn フォロー済
+      - else 
+        = link_to 'Follow', account_follows_path(user), data: { turbo_method: 'post'}, class: 'follow-btn' 
 
-  - if user == current_user 
+  - if user == current_user
     = form_with( model: @profile, url: profile_path , method:'patch', local: false, id: 'profile-form', html: { multipart: true } ) do |f|
       = f.file_field :avatar, name: 'profile[avatar]', id:'avatar-input', style: 'display: none;'
       =image_tag user.profile&.avatar&.attached? ?url_for(user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;'
