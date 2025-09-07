@@ -23,6 +23,17 @@
 
 }
 
+.follow-btn {
+  position: fixed;
+  right: 16px;
+  z-index: 1000;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #BDBDBD;
+  text-decoration: none;
+}
+
 .avatar_img {
   display: block;
   margin: 0 auto;
