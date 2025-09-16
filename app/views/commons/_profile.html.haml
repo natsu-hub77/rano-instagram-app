@@ -4,8 +4,9 @@
       = image_tag 'Tabs.svg', class: 'header_back'
     %p.account_name= user.account_name
     - unless user == current_user
-      = link_to 'Unfollow', '#', class: 'unfollow-btn hidden'
-      = link_to 'Follow', "#", class: 'follow-btn hidden'
+      %button.unfollow-btn.hidden Unfollow
+      %button.follow-btn.hidden Follow
+
 
   - if user == current_user
     = form_with( model: @profile, url: profile_path , method:'patch', local: false, id: 'profile-form', html: { multipart: true } ) do |f|
@@ -18,7 +19,7 @@
       .stat-number 44
       .stat-label Posts
     .stat
-      .stat-number 110
+      .stat-number= user.follow_count
       .stat-label Followers
     .stat
       .stat-number 44
