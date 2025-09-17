@@ -59,6 +59,10 @@ class User < ApplicationRecord
     following_relationships.exists?(following_id: user.id)
   end
 
+  def follow_count
+    followers.count
+  end
+
   private
   def get_user_id(user)
     if user.is_a?(User)

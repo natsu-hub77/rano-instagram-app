@@ -7,8 +7,8 @@ axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
 document.addEventListener('turbo:load', () => {
   $('.account_info').each(function() {
     const userId = $(this).data('user-id');
-    const accountElement = $(this);
-  
+    const accountElement = $(this);  
+
     if (!window.commentHandlersBound) {
     window.commentHandlersBound = true;
 
@@ -16,9 +16,7 @@ document.addEventListener('turbo:load', () => {
     axios.get(`/accounts/${userId}.json`)
       .then((response) => {
         const hasFollowed = response.data.has_followed
-
-        console.log('userId', userId);
-        console.log('hasFollowed', hasFollowed);
+        const FollowCount = response.data.FollowCount;
 
         if (hasFollowed) {
           accountElement.find('.unfollow-btn').removeClass('hidden')
@@ -26,6 +24,9 @@ document.addEventListener('turbo:load', () => {
         } else {
           accountElement.find('.follow-btn').removeClass('hidden')
           accountElement.find('.unfollow-btn').addClass('hidden')
+          $('.stat-follower-number').append(
+            FollowCount
+          )
         }
       })
 
@@ -36,10 +37,16 @@ document.addEventListener('turbo:load', () => {
 
       axios.post(`/accounts/${userId}/follows`)
         .then((response) => {
+            const FollowCount = response.data.followCount;
 
           if (response.data.status === 'followed') {
             accountElement.find('.unfollow-btn').removeClass('hidden')
             accountElement.find('.follow-btn').addClass('hidden')
+
+            $('.stat-follower-number').html('')
+            $('.stat-follower-number').append(
+              FollowCount
+            )
           }
         })
         .catch((e) => {
@@ -56,9 +63,16 @@ document.addEventListener('turbo:load', () => {
 
       axios.post(`/accounts/${userId}/unfollows`)
         .then((response) => {
+          const FollowCount = response.data.followCount;
+          
           if (response.data.status === 'unfollowed') {
             accountElement.find('.follow-btn').removeClass('hidden')
             accountElement.find('.unfollow-btn').addClass('hidden')
+
+            $('.stat-follower-number').html('')
+            $('.stat-follower-number').append(
+              FollowCount
+            )
           }
         })
         .catch((e) => {
@@ -67,6 +81,5 @@ document.addEventListener('turbo:load', () => {
         });
     }); 
     }
-    // この上の括弧を消す
   });
 })
