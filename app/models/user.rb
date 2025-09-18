@@ -63,6 +63,10 @@ class User < ApplicationRecord
     followers.count
   end
 
+  def following_count
+    followings.count
+  end
+
   private
   def get_user_id(user)
     if user.is_a?(User)
