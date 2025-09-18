@@ -9,9 +9,6 @@ document.addEventListener('turbo:load', () => {
     const userId = $(this).data('user-id');
     const accountElement = $(this);  
 
-    if (!window.commentHandlersBound) {
-    window.commentHandlersBound = true;
-
       if(window.location.pathname !== '/profile') {
 
   // 画面遷移時に表示させる
@@ -26,7 +23,7 @@ document.addEventListener('turbo:load', () => {
             } else {
               accountElement.find('.follow-btn').removeClass('hidden')
               accountElement.find('.unfollow-btn').addClass('hidden')
-              $('.stat-follower-number').append(
+              $('.stat-follower-number').text(
                 FollowCount
               )
             }
@@ -83,6 +80,5 @@ document.addEventListener('turbo:load', () => {
             });
         }); 
       }
-    }
   });
 })
