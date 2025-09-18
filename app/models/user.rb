@@ -41,7 +41,7 @@ class User < ApplicationRecord
   def has_liked?(post)
     likes.exists?(post_id: post.id)
   end
-  
+
   def follow!(user)
     user_id = get_user_id(user)
 
