@@ -8,8 +8,8 @@
         - if post.user.profile&.avatar&.attached?
           = link_to path do
             = image_tag(post.user.profile.avatar)
-        - else
-          = link_to path do 
+        - else 
+          =link_to path do
             =image_tag("avatar.svg")
       .post_detail
         %p.post-account_name= post.user.account_name

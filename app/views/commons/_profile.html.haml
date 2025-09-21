@@ -22,8 +22,9 @@
       .stat-number.stat-follower-number= user.follow_count
       .stat-label Followers
     .stat
-      .stat-number= user.following_count
-      .stat-label Following
+      = link_to following_account_path, class: 'follow-link' do
+        .stat-number= user.following_count
+        .stat-label Following
   .gallery
     =image_tag 'posts_1.jpg', class: 'item-large'
     .gallery-top

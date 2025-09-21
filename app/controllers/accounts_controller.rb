@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
     @user = User.find(params[:id])
 
     if @user == current_user
-      redirect_to profile_path
+      redirect_to profile_path and return
     end
 
     respond_to do |format|
@@ -16,5 +16,15 @@ class AccountsController < ApplicationController
        }
       end
     end
+  end
+
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followings
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers_count
   end
 end

@@ -1,0 +1,15 @@
+.container 
+  .follow-nav 
+    = link_to :back do 
+      = image_tag 'Tabs.svg', class: 'back-btn'
+    %p Followings 
+
+  - @users.each do |user|
+    .follow-information 
+      .follow-icon
+        =image_tag user.profile.avatar
+      .follow-body
+        .follow-name
+          %p= user.account_name
+        .follow-seen 
+          %P Last seen 3 hours ago               
