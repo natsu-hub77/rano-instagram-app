@@ -25,6 +25,6 @@ class AccountsController < ApplicationController
 
   def followers
     @user = User.find(params[:id])
-    @users = @user.followers_count
+    @users = @user.followers
   end
 end

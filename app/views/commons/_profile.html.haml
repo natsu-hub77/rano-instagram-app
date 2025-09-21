@@ -19,10 +19,11 @@
       .stat-number 44
       .stat-label Posts
     .stat
-      .stat-number.stat-follower-number= user.follow_count
-      .stat-label Followers
+      = link_to followers_account_path(user), class: 'follow-link' do
+        .stat-number.stat-follower-number= user.follow_count
+        .stat-label Followers
     .stat
-      = link_to following_account_path, class: 'follow-link' do
+      = link_to following_account_path(user), class: 'follow-link' do
         .stat-number= user.following_count
         .stat-label Following
   .gallery
