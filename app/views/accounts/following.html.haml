@@ -5,14 +5,15 @@
     %p Followings 
 
   - @users.each do |user|
-    .follow-information 
-      .follow-icon
-        - if user.profile&.avatar&.attached?
-          = image_tag user.profile.avatar
-        - else
-          = image_tag("avatar.svg")
-      .follow-body
-        .follow-name
-          %p= user.account_name
-        .follow-seen 
-          %P Last seen 3 hours ago               
+    = link_to account_path(user.id), class: 'follow-link ' do
+      .follow-information 
+        .follow-icon
+          - if user.profile&.avatar&.attached?
+            = image_tag user.profile.avatar
+          - else
+            = image_tag("avatar.svg")
+        .follow-body
+          .follow-name
+            %p= user.account_name
+          .follow-seen 
+            %P Last seen 3 hours ago               
