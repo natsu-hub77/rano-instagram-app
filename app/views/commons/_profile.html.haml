@@ -1,6 +1,6 @@
 .container.profile_container
   .account_info{data: { user_id: user.id }}
-    = link_to :back do
+    = link_to root_path do
       = image_tag 'Tabs.svg', class: 'header_back'
     %p.account_name= user.account_name
     - unless user == current_user
