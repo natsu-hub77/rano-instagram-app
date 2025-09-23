@@ -5,80 +5,65 @@ import Rails from "@rails/ujs"
 axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
 
 document.addEventListener('turbo:load', () => {
-  $('.account_info').each(function() {
-    const userId = $(this).data('user-id');
-    const accountElement = $(this);  
+  const accountElement = $('.account_info');
+  const userId = accountElement.data('user-id');
 
-      if(window.location.pathname !== '/profile') {
+  if (userId) {
+    // 初期表示処理
+    axios.get(`/accounts/${userId}.json`)
+      .then((response) => {
+        const hasFollowed = response.data.has_followed;
+        const FollowCount = response.data.FollowCount;
 
-  // 画面遷移時に表示させる
-        axios.get(`/accounts/${userId}.json`)
-          .then((response) => {
-            const hasFollowed = response.data.has_followed
-            const FollowCount = response.data.FollowCount;
+        if (hasFollowed) {
+          accountElement.find('.unfollow-btn').removeClass('hidden');
+          accountElement.find('.follow-btn').addClass('hidden');
+        } else {
+          accountElement.find('.follow-btn').removeClass('hidden');
+          accountElement.find('.unfollow-btn').addClass('hidden');
+        }
 
-            if (hasFollowed) {
-              accountElement.find('.unfollow-btn').removeClass('hidden')
-              accountElement.find('.follow-btn').addClass('hidden')
-            } else {
-              accountElement.find('.follow-btn').removeClass('hidden')
-              accountElement.find('.unfollow-btn').addClass('hidden')
-              $('.stat-follower-number').text(
-                FollowCount
-              )
-            }
-          })
+        $('.stat-follower-number').text(FollowCount);
+      });
+  }
+});
 
-        $(this).find('.follow-btn').on('click', function(e){
-          e.preventDefault();
-          const accountElement = $(this).closest('.account_info');
-          const userId = accountElement.data('user-id');
+  if (!window.followHandlerAttached) { // すでに登録済みならスキップ
+  window.followHandlerAttached = true;
 
-          axios.post(`/accounts/${userId}/follows`)
-            .then((response) => {
-                const FollowCount = response.data.followCount;
+  // フォロー
+  $(document).on('click', '.follow-btn', function(e) {
+    e.preventDefault();
 
-              if (response.data.status === 'followed') {
-                accountElement.find('.unfollow-btn').removeClass('hidden')
-                accountElement.find('.follow-btn').addClass('hidden')
+    const userId = $('.account_info').data('user-id'); 
+    const accountElement = $('.account_info');
 
-                $('.stat-follower-number').html('')
-                $('.stat-follower-number').append(
-                  FollowCount
-                )
-              }
-            })
-            .catch((e) => {
-              window.alert('Error');
-              console.log(e);
-            });
-        });
-
-        $(this).find('.unfollow-btn').on('click', function(e)
-        {
-          e.preventDefault();
-          const accountElement = $(this).closest('.account_info');
-          const userId = accountElement.data('user-id');
-
-          axios.post(`/accounts/${userId}/unfollows`)
-            .then((response) => {
-              const FollowCount = response.data.followCount;
-              
-              if (response.data.status === 'unfollowed') {
-                accountElement.find('.follow-btn').removeClass('hidden')
-                accountElement.find('.unfollow-btn').addClass('hidden')
-
-                $('.stat-follower-number').html('')
-                $('.stat-follower-number').append(
-                  FollowCount
-                )
-              }
-            })
-            .catch((e) => {
-              window.alert('Error');
-              console.log(e);
-            });
-        }); 
-      }
+    axios.post(`/accounts/${userId}/follows`)
+      .then((response) => {
+        const FollowCount = response.data.followCount;
+        if (response.data.status === 'followed') {
+          accountElement.find('.unfollow-btn').removeClass('hidden');
+          accountElement.find('.follow-btn').addClass('hidden');
+          $('.stat-follower-number').text(FollowCount);
+        }
+      });
   });
-})
+
+  // アンフォロー
+  $(document).on('click', '.unfollow-btn', function(e) {
+    e.preventDefault();
+
+    const userId = $('.account_info').data('user-id');
+    const accountElement = $('.account_info');
+
+    axios.post(`/accounts/${userId}/unfollows`)
+      .then((response) => {
+        const FollowCount = response.data.followCount;
+        if (response.data.status === 'unfollowed') {
+          accountElement.find('.follow-btn').removeClass('hidden');
+          accountElement.find('.unfollow-btn').addClass('hidden');
+          $('.stat-follower-number').text(FollowCount);
+        }
+      });
+  }); 
+}
