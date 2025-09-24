@@ -1,6 +1,13 @@
 .container.timeline-container
-  = link_to new_post_path do
-    = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
+  .post-header
+    = link_to new_post_path do
+      = image_tag 'timeline/photo-camera.png', class: 'camera-icon'
+    .dropdown
+      -# .dropdown-trigger
+      = image_tag 'timeline/icon.png', class: 'human-icon'
+      .dropdown-content 
+        = link_to 'Timeline', timeline_path
+        = link_to 'Logout', destroy_user_session_path, data: { method: 'delete' }
   - @posts.each do |post|
     - path = post.user == current_user ? profile_path : account_path(post.user)
     .post_imformation{id: "post_#{post.id}"}
