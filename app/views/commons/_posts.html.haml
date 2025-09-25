@@ -5,7 +5,10 @@
       .dropdown
         = image_tag 'timeline/icon.png', class: 'human-icon'
         .dropdown-content 
-          = link_to 'Timeline', timeline_path
+          - if current_page?(root_path) 
+            = link_to 'Timeline', timeline_path
+          - else 
+            = link_to 'NewPosts', root_path 
           = link_to 'Logout', destroy_user_session_path, data: { method: 'delete' } 
   - posts.each do |post|
     - path = post.user == current_user ? profile_path : account_path(post.user)
