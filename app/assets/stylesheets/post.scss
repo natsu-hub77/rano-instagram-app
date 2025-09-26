@@ -2,9 +2,52 @@
   font-size: 12px; 
 }
 
-.camera-icon {
+.post-header {
   margin: 40px 0px;
+  display: flex;
+  position: relative;
 }
+
+.human-icon {
+  width: 25px;
+  height: auto; 
+  position: relative;
+  z-index: auto;  
+  pointer-events: none;
+}
+
+.dropdown {
+  margin-left: auto;
+  position: relative;
+  display: inline-block;
+  z-index: 9999;
+}
+
+.dropdown-content {
+  font-weight: normal;
+  display: none;
+  right: 0;
+  position: absolute;
+  background-color: white;
+  min-width: 90px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+}
+
+.dropdown-content a {
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  color: #9E9E9E;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+} 
 
 .post_imformation {
   display: flex;
@@ -66,14 +109,6 @@
   object-fit: cover;
   display: block;
 }
-
-// .img_right img {
-//   display: block;
-//   margin-bottom: 4px;
-// }
-// .img_right img:last-child {
-//   margin-bottom: 0;
-// }
 
 .post-actions {
   display: flex;

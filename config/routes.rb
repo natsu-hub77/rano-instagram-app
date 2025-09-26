@@ -18,10 +18,22 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root to: 'posts#index'
+  resource :timeline, only: [:show]
 
   resources :posts, only: [:show, :new, :create] do
     resource :like, only: [:show, :create, :destroy]
     resources :comments, only: [:index, :create]
   end
+
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
+
+    member do
+      get :following
+      get :followers
+    end
+  end
+
   resource :profile, only: [:show, :update]
 end

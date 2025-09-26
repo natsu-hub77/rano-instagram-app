@@ -11,6 +11,7 @@ ActiveStorage.start()
 
 import "./profile"
 import "./comment"
+import "./follow"
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   const avatarUpload = document.getElementById('avatar-upload');
