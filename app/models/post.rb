@@ -25,6 +25,14 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many_attached :images
 
+  scope :recent_24h, -> { where("posts.created_at >= ?", 24.hours.ago)}
+
+  scope :with_like_count, -> {
+    left_joins(:likes)
+      .select("posts.*, COUNT(likes.id) as likes_count")
+      .group("posts.id")
+  }
+
   def like_count
     likes.count
   end
