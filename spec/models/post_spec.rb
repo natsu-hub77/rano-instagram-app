@@ -2,13 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
 
-  let!(:user) do 
-    user = User.create!({
-    account_name: 'test',
-    email: 'test@example.com',
-    password: 'password'
-    })
-  end
+  let!(:user) { create(:user) }
 
   context 'contentが入力されていて画像がアップロードされていれば' do
     let!(:post) do
