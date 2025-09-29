@@ -36,7 +36,7 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  context 'タイトルが未入力の場合' do
+  context 'contextが未入力の場合' do
     let!(:post) { build(:post, :with_images, user: user, content:'' ) }
 
     before do
