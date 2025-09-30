@@ -53,4 +53,5 @@
         %p= post.user.account_name
         %p= post.content
 
-= javascript_pack_tag 'post'
+- unless Rails.env.test?
+  = javascript_pack_tag 'post'
