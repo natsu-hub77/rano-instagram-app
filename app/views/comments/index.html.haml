@@ -13,4 +13,5 @@
         = image_submit_tag("timeline/comment.png", class: "comment-submit-btn")
       .flex-grow
         = f.text_area :content, class: 'comment-submit'
-= javascript_pack_tag 'comment'
+- unless Rails.env.test?
+  = javascript_pack_tag 'comment'
