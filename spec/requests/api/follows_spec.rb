@@ -21,5 +21,15 @@ RSpec.describe 'Api::Follows', type: :request do
         expect(account.reload.follow_count).to eq(1)
       end
     end
+
+    context 'ログインしていない場合' do
+      it '401が返る' do
+        post account_follows_path(account), as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+        body = JSON.parse(response.body)
+        expect(body['error']).to be_present
+      end
+    end
   end
 end
