@@ -4,7 +4,7 @@ RSpec.describe 'Api::Follows', type: :request do
   let!(:follower) { create(:user) } #フォローする側
   let!(:account) { create(:user) } #フォローされる側
 
-  describe 'GET /api/follows' do
+  describe 'POST /api/follows' do
     context 'ログインしている場合' do
       before do
         sign_in follower
