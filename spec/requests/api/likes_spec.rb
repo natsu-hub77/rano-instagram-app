@@ -27,4 +27,30 @@ RSpec.describe 'Api::Likes', type: :request do
       end
     end
   end
+
+  describe 'POST /api/likes' do
+    context 'ログインしている場合' do
+
+      before do
+        sign_in user
+      end
+
+      it 'いいねをすることができる' do
+        post post_like_path(posts.first), as: :json
+        expect(response).to have_http_status(200)
+        body = JSON.parse(response.body)
+        expect(body['status']).to eq('ok')
+
+        post post_like_path(posts.second), as: :json
+        expect(response).to have_http_status(200)
+        body = JSON.parse(response.body)
+        expect(body['status']).to eq('ok')
+
+        post post_like_path(posts.third), as: :json
+        expect(response).to have_http_status(200)
+        body = JSON.parse(response.body)
+        expect(body['status']).to eq('ok')
+      end
+    end
+  end
 end
