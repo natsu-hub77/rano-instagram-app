@@ -61,5 +61,15 @@ RSpec.describe 'Api::Likes', type: :request do
         expect(body['status']).to eq('ok')
       end
     end
+
+    context 'ログインしていない場合' do 
+      it '401が返る' do
+        post post_like_path(posts.first), as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+        body = JSON.parse(response.body)
+        expect(body['error']).to be_present
+      end
+    end
   end
 end
