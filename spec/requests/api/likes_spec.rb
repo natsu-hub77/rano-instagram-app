@@ -51,6 +51,15 @@ RSpec.describe 'Api::Likes', type: :request do
         body = JSON.parse(response.body)
         expect(body['status']).to eq('ok')
       end
+
+      it 'いいねを取り消すことができる' do
+        posts.first.likes.create!(user: user)
+
+        delete post_like_path(posts.first), as: :json
+        expect(response).to have_http_status(200)
+        body = JSON.parse(response.body)
+        expect(body['status']).to eq('ok')
+      end
     end
   end
 end
