@@ -11,9 +11,9 @@
   - if user == current_user
     = form_with( model: @profile, url: profile_path , method:'patch', local: false, id: 'profile-form', html: { multipart: true } ) do |f|
       = f.file_field :avatar, name: 'profile[avatar]', id:'avatar-input', style: 'display: none;'
-      =image_tag user.profile&.avatar&.attached? ?url_for(user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;'
+      =image_tag user.profile&.avatar&.attached?? url_for(user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;'
   -else 
-    =image_tag user.profile&.avatar&.attached? ?url_for(user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;' 
+    =image_tag user.profile&.avatar&.attached?? url_for(user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;' 
   .stats-container
     .stat
       .stat-number 44
@@ -36,5 +36,5 @@
       =image_tag 'posts_4.jpg', class: 'item-bottom'
       =image_tag 'posts_5.jpg', class: 'item-bottom'
     =image_tag 'posts_6.jpg', class: 'item-tall'
-
-= javascript_pack_tag 'follow'
+- unless Rails.env.test?
+  = javascript_pack_tag 'follow'
