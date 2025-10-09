@@ -13,7 +13,7 @@ RSpec.describe 'Post', type: :system do
     it '投稿一覧が表示される' do
       visit root_path
       posts.each do |post|
-        expect(page).to have_content(post.content)
+        expect(page).to have_css('.post-footer ', text: post.content)
       end
     end
   end
