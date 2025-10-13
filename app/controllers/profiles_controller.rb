@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = current_user.profile
+    @posts = current_user.posts.with_attached_images.order(created_at: :desc)
   end
 
   def update
