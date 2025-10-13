@@ -29,12 +29,20 @@
         .stat-label Following
 
   - user.posts.each do |post|
-    = link_to post_path(post) do
+    -if user == current_user 
+      = link_to post_path(post) do
+        .post_img 
+          .img_left_wrapper
+            = image_tag url_for(post.images.first), class: 'img_left'
+          .img_right_wrapper
+            = image_tag url_for(post.images.second), class: 'img_right'
+            = image_tag url_for(post.images.third), class: 'img_right'
+    - else
       .post_img 
         .img_left_wrapper
           = image_tag url_for(post.images.first), class: 'img_left'
         .img_right_wrapper
           = image_tag url_for(post.images.second), class: 'img_right'
-          = image_tag url_for(post.images.third), class: 'img_right'
+          = image_tag url_for(post.images.third), class: 'img_right'    
 - unless Rails.env.test?
   = javascript_pack_tag 'follow'
