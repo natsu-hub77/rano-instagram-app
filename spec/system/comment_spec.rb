@@ -1,29 +1,3 @@
-# require 'rails_helper'
-
-# RSpec.describe 'Comment', type: :system do
-#   let!(:user) { create(:user) }
-#   let!(:post) { create(:post, :with_images, :with_comments, user: user) }
-
-#   context 'ログインしている場合' do
-#     before do
-#       sign_in user
-#     end
-
-#     it 'コメント一覧が表示される' do
-#       visit post_comments_path(post)
-#       # expect(page).to have_selector('.comments-container')
-#       # expect(page).to have_css('.comment-post', minimum: post.comments.count)
-#       # expect(page).to have_css('.comment-post', minimum: post.comments.count, wait: 5)
-#       expect(page).to have_css('.comment-post', minimum: post.comments.count, wait: 5, visible: true)
-
-
-#       post.comments.each do |comment|
-#         expect(page).to have_css('.comment-content', text: comment.content)
-#       end
-#     end
-#   end
-# end
-
 require 'rails_helper'
 
 RSpec.describe 'Comment', type: :system do
