@@ -16,5 +16,12 @@ FactoryBot.define do
         )
       end
     end
+
+    trait :with_comments do
+      after(:build) do |post|
+        other_user = create(:user)
+        create_list(:comment, 3, post: post, user: other_user)
+      end
+    end
   end
 end
