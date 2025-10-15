@@ -30,7 +30,7 @@
 
   - user.posts.each do |post|
     -if user == current_user 
-      = link_to post_path(post) do
+      = link_to edit_post_path(post) do
         .post_img 
           .img_left_wrapper
             = image_tag url_for(post.images.first), class: 'img_left'

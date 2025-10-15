@@ -18,12 +18,13 @@
 #
 class Post < ApplicationRecord
   validates :content, presence: true
-  validate :must_have_at_least_one_image
+  validate :must_have_at_least_one_image, on: :create
 
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many_attached :images
+  validates :images, presence: true, on: :create
 
   scope :recent_24h, -> { where("posts.created_at >= ?", 24.hours.ago)}
 
