@@ -67,6 +67,10 @@ class User < ApplicationRecord
     followings.count
   end
 
+  def post_count
+    posts.count
+  end
+
   private
   def get_user_id(user)
     if user.is_a?(User)
