@@ -1,4 +1,6 @@
 - user = defined?(@user) ? @user : current_user
+- posts = local_assigns[:posts] || (user.posts.with_attached_images.order(created_at: :desc))
+
 .container.profile_container
   .account_info{data: { user_id: user.id }}
     = link_to root_path do
@@ -28,7 +30,7 @@
         .stat-number= user.following_count
         .stat-label Following
 
-  - user.posts.each do |post|
+  - posts.each do |post|
     -if user == current_user 
       = link_to edit_post_path(post) do
         .post_img 
