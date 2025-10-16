@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resource :timeline, only: [:show]
 
-  resources :posts, only: [:new, :create, :edit, :update] do
+  resources :posts, only: [:new, :create, :edit, :update, :destroy] do
     resource :like, only: [:show, :create, :destroy]
     resources :comments, only: [:index, :create]
   end

@@ -33,29 +33,18 @@ before_action :authenticate_user!
     end
 
     if @post.update(update_params)
-      redirect_to profile_path, notice: '更新できました'
+      redirect_to profile_path, notice: 'Updated successfully'
     else
-      flash.now[:error] = '更新できませんでした'
+      flash.now[:error] = 'Update failed'
       render :edit, status: :unprocessable_entity
     end 
   end
 
-
-
-  # def update
-  #   @post = Post.find(params[:id])
-
-  #   if params[:post][:images].blank?
-  #     params[:post].delete(:images)
-  #   end
-
-  #   if @post.update(post_params)
-  #     redirect_to profile_path, notice: '更新できました'
-  #   else
-  #     flash.now[:error] = '更新できませんでした'
-  #     render :edit, status: :unprocessable_entity
-  #   end
-  # end
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy!
+    redirect_to profile_path, status: :see_other, notice: 'Deleted successfully'
+  end
 
   private
   def post_params
