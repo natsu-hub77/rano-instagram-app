@@ -19,6 +19,11 @@
 .comment-post {
   display: flex;
   margin-bottom: 30px;
+
+  .comment-body {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
 .comment-account-name {
@@ -37,9 +42,13 @@
 
 .comment-content {
   p {
-  size: 14px;
+  font-size: 14px;
   color: #9B9B9B;
   padding: 5px 10px;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
   }
 }
 
