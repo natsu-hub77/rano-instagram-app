@@ -3,11 +3,20 @@ import $ from 'jquery'
 import Rails from "@rails/ujs"
 
 const appendAllComment = (comment) => {
+  const avatarUrl = comment.avatar_url || '/assets/avatar.svg'
+
+  const profileLink =
+    comment.user_id === currentUserId
+      ? `/profile`
+      : `/accounts/${comment.user_id}`
+
 $('.comments-container').append(
   `     
     <div class="comment-post">
       <div class="comment-icon">
-        <img src="${comment.avatar_url}" alt="${comment.account_name}" />
+        <a href="${profileLink}">
+          <img src="${avatarUrl}" alt="${comment.account_name}" />
+        </a>
       </div>
       <div class="comment-body">
         <div class="comment-account-name">
@@ -27,6 +36,7 @@ document.addEventListener('turbo:load', () => {
   const dataset = $('#comment-index').data()
   if (!dataset) return
   const postId = dataset.postId
+  const currentUserId = dataset.currentUserId
 
   axios.get(`/posts/${postId}/comments`, {
     headers: { Accept: "application/json" }
@@ -49,6 +59,8 @@ document.addEventListener('turbo:load', () => {
       const dataset = $('#comment-index').data();
       if (!dataset) return;
       const postId = dataset.postId;
+      const currentUserId = dataset.currentUserId
+      
       if (!content) {
         window.alert('コメントを入力してください')
         return

@@ -1,4 +1,4 @@
-.container.comment-container#comment-index{data: { post_id: @post.id}}
+.container.comment-container#comment-index{data: { post_id: @post.id, current_user_id: current_user.id }}
   %ul
     - @comment.errors.full_messages.each do |message|
       %li= message
@@ -13,5 +13,9 @@
         = image_submit_tag("timeline/comment.png", class: "comment-submit-btn")
       .flex-grow
         = f.text_area :content, class: 'comment-submit'
+
+:javascript
+  const currentUserId = #{current_user&.id || 'null'};
+
 - if !Rails.env.test? || Rails.env.system_test?
   = javascript_pack_tag 'comment'
