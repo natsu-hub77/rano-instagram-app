@@ -10,6 +10,11 @@ const appendAllComment = (comment) => {
       ? `/profile`
       : `/accounts/${comment.user_id}`
 
+  const editLink =
+    comment.user_id === currentUserId
+      ? `/posts/${comment.post_id}/comments/${comment.id}/edit`
+      : ''
+
 $('.comments-container').append(
   `     
     <div class="comment-post">
@@ -19,12 +24,14 @@ $('.comments-container').append(
         </a>
       </div>
       <div class="comment-body">
-        <div class="comment-account-name">
-          <p>${comment.account_name}</p>
-        </div>
-        <div class="comment-content">
-          <p>${comment.content}</p>
-        </div>
+        <a href="${editLink}">
+          <div class="comment-account-name">
+            <p>${comment.account_name}</p>
+          </div>
+          <div class="comment-content">
+            <p>${comment.content}</p>
+          </div>
+        </a>
       </div>
     </div>
   `
@@ -60,7 +67,7 @@ document.addEventListener('turbo:load', () => {
       if (!dataset) return;
       const postId = dataset.postId;
       const currentUserId = dataset.currentUserId
-      
+
       if (!content) {
         window.alert('コメントを入力してください')
         return

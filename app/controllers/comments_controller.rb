@@ -17,14 +17,12 @@ class CommentsController < ApplicationController
     @comment.save!
 
     render json: @comment
-    # if @comment.save
-    #   redirect_to post_comments_path(@post), notice: 'コメントを追加しました'
-    # else
-    #   @comments = @post.comments
-    #   flash.now[:error] = '更新できませんでした'
-    #   render :index, status: :unprocessable_entity
-    # end
   end
+
+  def edit
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+  end 
 
   private
   def comment_params
