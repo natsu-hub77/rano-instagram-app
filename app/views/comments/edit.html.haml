@@ -1,1 +1,10 @@
-edit
+.container.form-container 
+  %ul
+    - @comment.errors.full_messages.each do |message|
+      %li= message
+
+  = form_with(model: @comment, url: post_comment_path(@post, @comment), method: 'put', local: true) do |f|
+    .comment-nav 
+      = link_to 'Cancel', post_comments_path(@post), class: 'cancel-btn'
+      = f.submit 'Update', class: 'post-btn'   
+    = f.text_field :content, class: 'comment-edit'

@@ -96,4 +96,14 @@
   display: contents;
 }
 
-
+.comment-edit {
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #BDBDBD;
+  font-size: 16px;
+  padding: 10px 0px;
+  margin-bottom: 30px;
+}
+.comment-edit::placeholder {
+    color: #BDBDBD;
+}

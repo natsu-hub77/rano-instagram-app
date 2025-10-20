@@ -22,7 +22,19 @@ class CommentsController < ApplicationController
   def edit
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-  end 
+  end
+
+  def update
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+
+    if @comment.update(comment_params)
+        redirect_to post_comments_path(@post), notice: 'Updated successfully'
+    else
+      flash.now[:error] = 'Update failed'
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
   def comment_params

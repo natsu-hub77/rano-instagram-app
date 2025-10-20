@@ -37,7 +37,7 @@ before_action :authenticate_user!
     else
       flash.now[:error] = 'Update failed'
       render :edit, status: :unprocessable_entity
-    end 
+    end
   end
 
   def destroy
