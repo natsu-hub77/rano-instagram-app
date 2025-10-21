@@ -23,12 +23,27 @@
       .post_detail
         %p.post-account_name= post.user.account_name
         %p.post_time= I18n.with_locale(:en) { time_ago_in_words(post.created_at) + ' ago' }
-    .post_img 
-      .img_left_wrapper
-        = image_tag url_for(post.images.first), class: 'img_left'
-      .img_right_wrapper
-        = image_tag url_for(post.images.second), class: 'img_right'
-        = image_tag url_for(post.images.third), class: 'img_right'
+
+    - image_count = post.images.count
+
+    - if image_count == 3
+      .post_img.three-images
+        .img_left_wrapper
+          = image_tag url_for(post.images.first), class: 'img_left'
+        .img_right_wrapper
+          = image_tag url_for(post.images.second), class: 'img_right'
+          = image_tag url_for(post.images.third), class: 'img_right'
+
+    - elsif image_count == 2
+      .post_img.two-images
+        .img_two_wrapper
+          = image_tag url_for(post.images.first), class: 'img_two'
+          = image_tag url_for(post.images.second), class: 'img_two'
+
+    - elsif image_count == 1
+      .post_img.one-image
+        = image_tag url_for(post.images.first), class: 'img_one'
+
     .post-actions{ data: { post_id: post.id } }
       - if user_signed_in?
         .like-button.hidden.active-heart-button 

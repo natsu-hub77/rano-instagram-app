@@ -33,13 +33,33 @@
   - posts.each do |post|
     -if user == current_user 
       = link_to edit_post_path(post) do
-        .post_img 
-          .img_left_wrapper
-            = image_tag url_for(post.images.first), class: 'img_left'
-          .img_right_wrapper
-            = image_tag url_for(post.images.second), class: 'img_right'
-            = image_tag url_for(post.images.third), class: 'img_right'
-    - else
+        - image_count = post.images.count
+
+        - if image_count == 3
+          .post_img.three-images
+            .img_left_wrapper
+              = image_tag url_for(post.images.first), class: 'img_left'
+            .img_right_wrapper
+              = image_tag url_for(post.images.second), class: 'img_right'
+              = image_tag url_for(post.images.third), class: 'img_right'
+
+        - elsif image_count == 2
+          .post_img.two-images
+            .img_two_wrapper
+              = image_tag url_for(post.images.first), class: 'img_two'
+              = image_tag url_for(post.images.second), class: 'img_two'
+
+        - elsif image_count == 1
+          .post_img.one-image
+            = image_tag url_for(post.images.first), class: 'img_one'
+
+    -#     .post_img 
+    -#       .img_left_wrapper
+    -#         = image_tag url_for(post.images.first), class: 'img_left'
+    -#       .img_right_wrapper
+    -#         = image_tag url_for(post.images.second), class: 'img_right'
+    -#         = image_tag url_for(post.images.third), class: 'img_right'
+    -# - else
       .post_img 
         .img_left_wrapper
           = image_tag url_for(post.images.first), class: 'img_left'

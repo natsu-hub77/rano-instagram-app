@@ -18,13 +18,12 @@
 #
 class Post < ApplicationRecord
   validates :content, presence: true
-  validate :must_have_at_least_one_image, on: :create
+  validate :validate_image_count, on: :create
 
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many_attached :images
-  validates :images, presence: true, on: :create
 
   scope :recent_24h, -> { where("posts.created_at >= ?", 24.hours.ago)}
 
@@ -38,9 +37,11 @@ class Post < ApplicationRecord
     likes.count
   end
 
-  def must_have_at_least_one_image
+  def validate_image_count
     if images.blank?
-      errors.add(:base, '画像を1枚以上アップロードしてください') 
+      errors.add(:base, '画像を1枚以上アップロードしてください')
+    elsif images.count > 3
+      errors.add(:base, '画像は3枚までアップロードできます')
     end
   end
 end
