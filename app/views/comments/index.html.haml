@@ -3,7 +3,7 @@
     - @comment.errors.full_messages.each do |message|
       %li= message
   .comment-nav
-    =link_to image_tag('back-btn.png'), root_path, class: 'back-btn'
+    =link_to image_tag('back-btn.png'), root_path, class: 'back-btn', data: { turbo: false }
     %p Comment
   .comments-container
 

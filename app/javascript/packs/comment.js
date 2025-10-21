@@ -84,4 +84,3 @@ document.addEventListener('turbo:load', () => {
     })
   }
 })
-
