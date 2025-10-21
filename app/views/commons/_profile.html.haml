@@ -51,20 +51,6 @@
 
         - elsif image_count == 1
           .post_img.one-image
-            = image_tag url_for(post.images.first), class: 'img_one'
-
-    -#     .post_img 
-    -#       .img_left_wrapper
-    -#         = image_tag url_for(post.images.first), class: 'img_left'
-    -#       .img_right_wrapper
-    -#         = image_tag url_for(post.images.second), class: 'img_right'
-    -#         = image_tag url_for(post.images.third), class: 'img_right'
-    -# - else
-      .post_img 
-        .img_left_wrapper
-          = image_tag url_for(post.images.first), class: 'img_left'
-        .img_right_wrapper
-          = image_tag url_for(post.images.second), class: 'img_right'
-          = image_tag url_for(post.images.third), class: 'img_right'    
+            = image_tag url_for(post.images.first), class: 'img_one' 
 - unless Rails.env.test?
   = javascript_pack_tag 'follow'
