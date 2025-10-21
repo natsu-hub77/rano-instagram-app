@@ -8,7 +8,7 @@
       - if @post.persisted?
         = link_to 'Cancel', profile_path, class: 'cancel-btn'
       - else
-        = link_to 'Cancel', :back, class: 'cancel-btn'
+        = link_to 'Cancel', root_path, class: 'cancel-btn'
       %p Status 
       - if @post.persisted?
         = f.submit 'Update', class: 'post-btn'
