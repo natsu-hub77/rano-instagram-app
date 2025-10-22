@@ -16,4 +16,7 @@
           .follow-name
             %p= user.account_name
           .follow-seen 
-            %P Last seen 3 hours ago 
+            - if user.last_seen_at.present?
+              %p= I18n.with_locale(:en) {"#{time_ago_in_words(user.last_seen_at)} ago" }
+            - else 
+              %p Never logged in
