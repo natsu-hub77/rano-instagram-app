@@ -17,7 +17,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
-  validates :content, presence: true
+  validates :content, length: { maximum: 100 }, presence: true
   validate :validate_image_count, on: :create
 
   belongs_to :user
