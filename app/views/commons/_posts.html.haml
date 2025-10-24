@@ -67,7 +67,7 @@
         %p= "#{post.likes.last.user.account_name} and #{post.like_count - 1} other liked your post"
       .post-footer 
         %p= post.user.account_name
-        %p= post.content
+        %p.post_content_detail= post.content
 
 - unless Rails.env.test?
   = javascript_pack_tag 'post'

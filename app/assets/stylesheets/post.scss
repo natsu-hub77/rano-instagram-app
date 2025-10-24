@@ -147,7 +147,14 @@ p {
   margin: 0px;
 }
 
+.post_content_detail {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;  
+}
+
 .post-footer {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
