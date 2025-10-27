@@ -13,61 +13,63 @@
         = link_to 'Logout', destroy_user_session_path, data: { method: 'delete' } 
   - posts.each do |post|
     - path = post.user == current_user ? profile_path : account_path(post.user)
-    .post_imformation{id: "post_#{post.id}"}
-      .icon
-        - if post.user.profile&.avatar&.attached?
-          = link_to path do
-            = image_tag(post.user.profile.avatar)
-        - else 
-          =link_to path do
-            =image_tag("avatar.svg")
-      .post_detail
-        %p.post-account_name= post.user.account_name
-        %p.post_time= I18n.with_locale(:en) { time_ago_in_words(post.created_at) + ' ago' }
+    .post_wrapper
+      .post_imformation{id: "post_#{post.id}"}
+        .icon
+          - if post.user.profile&.avatar&.attached?
+            = link_to path do
+              = image_tag(post.user.profile.avatar)
+          - else 
+            =link_to path do
+              =image_tag("avatar.svg")
+        .post_detail
+          %p.post-account_name= post.user.account_name
+          %p.post_time= I18n.with_locale(:en) { time_ago_in_words(post.created_at) + ' ago' }
 
-    - image_count = post.images.count
+      - image_count = post.images.count
 
-    - if image_count == 3
-      .post_img.three-images
-        .img_left_wrapper
-          = image_tag url_for(post.images.first), class: 'img_left'
-        .img_right_wrapper
-          = image_tag url_for(post.images.second), class: 'img_right'
-          = image_tag url_for(post.images.third), class: 'img_right'
+      - if image_count == 3
+        .post_img.three-images
+          .img_left_wrapper
+            = image_tag url_for(post.images.first), class: 'img_left'
+          .img_right_wrapper
+            = image_tag url_for(post.images.second), class: 'img_right'
+            = image_tag url_for(post.images.third), class: 'img_right'
 
-    - elsif image_count == 2
-      .post_img.two-images
-        .img_two_wrapper
-          = image_tag url_for(post.images.first), class: 'img_two'
-          = image_tag url_for(post.images.second), class: 'img_two'
+      - elsif image_count == 2
+        .post_img.two-images
+          .img_two_wrapper
+            = image_tag url_for(post.images.first), class: 'img_two'
+            = image_tag url_for(post.images.second), class: 'img_two'
 
-    - elsif image_count == 1
-      .post_img.one-image
-        = image_tag url_for(post.images.first), class: 'img_one'
+      - elsif image_count == 1
+        .post_img.one-image
+          = image_tag url_for(post.images.first), class: 'img_one'
 
-    .post-actions{ data: { post_id: post.id } }
-      - if user_signed_in?
-        .like-button.hidden.active-heart-button 
-          = image_tag 'timeline/active-like.png', class: 'heart-button' 
-        .like-button.hidden.inactive-heart-button 
-          = image_tag 'timeline/inactive-like.png', class: 'heart-button'
-      .comment-button
-        =link_to  post_comments_path(post) do
-          = image_tag 'timeline/comment.png'
-      - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
-      .share-button
-        = link_to share_url, target: '_blank', rel:"noopener noreferrer", data: { turbo: false, toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do 
-          = image_tag 'timeline/share.png'
-    .post_content 
-      - if post.like_count == 0
-        %p No likes yet
-      - elsif post.like_count == 1
-        %p= "#{post.likes.last.user.account_name} liked your post"
-      -else
-        %p= "#{post.likes.last.user.account_name} and #{post.like_count - 1} other liked your post"
-      .post-footer 
-        %p= post.user.account_name
-        %p.post_content_detail= post.content
+      .post-actions{ data: { post_id: post.id } }
+        - if user_signed_in?
+          .like-button.hidden.active-heart-button 
+            = image_tag 'timeline/active-like.png', class: 'heart-button' 
+          .like-button.hidden.inactive-heart-button 
+            = image_tag 'timeline/inactive-like.png', class: 'heart-button'
+        .comment-button
+          =link_to  post_comments_path(post) do
+            = image_tag 'timeline/comment.png'
+        - share_url = "https://twitter.com/share?url=#{ERB::Util.url_encode(root_url(anchor: "post_#{post.id}"))}&text=#{ERB::Util.url_encode(post.content)}"
+        .share-button
+          = link_to share_url, target: '_blank', rel:"noopener noreferrer", data: { turbo: false, toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do 
+            = image_tag 'timeline/share.png'
+      .post_content
+        .like-message
+          - if post.like_count == 0
+            No likes yet
+          - elsif post.like_count == 1
+            = "#{post.likes.last.user.account_name} liked your post"
+          -else
+            = "#{post.likes.last.user.account_name} and #{post.like_count - 1} other liked your post"
+        .post-footer 
+          %p= post.user.account_name
+          %p.post_content_detail= post.content
 
 - unless Rails.env.test?
   = javascript_pack_tag 'post'
