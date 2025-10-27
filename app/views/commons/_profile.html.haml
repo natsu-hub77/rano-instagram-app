@@ -29,28 +29,33 @@
       = link_to following_account_path(user), class: 'follow-link' do
         .stat-number= user.following_count
         .stat-label Following
-
+        
   - posts.each do |post|
-    -if user == current_user 
+    - image_count = post.images.count
+    - post_content = capture do
+      - if image_count == 3
+        .post_img.three-images
+          .img_left_wrapper
+            = image_tag url_for(post.images.first), class: 'img_left'
+          .img_right_wrapper
+            = image_tag url_for(post.images.second), class: 'img_right'
+            = image_tag url_for(post.images.third), class: 'img_right'
+
+      - elsif image_count == 2
+        .post_img.two-images
+          .img_two_wrapper
+            = image_tag url_for(post.images.first), class: 'img_two'
+            = image_tag url_for(post.images.second), class: 'img_two'
+
+      - elsif image_count == 1
+        .post_img.one-image
+          = image_tag url_for(post.images.first), class: 'img_one' 
+
+    - if user == current_user
       = link_to edit_post_path(post) do
-        - image_count = post.images.count
+        = post_content
+    - else
+      = post_content
 
-        - if image_count == 3
-          .post_img.three-images
-            .img_left_wrapper
-              = image_tag url_for(post.images.first), class: 'img_left'
-            .img_right_wrapper
-              = image_tag url_for(post.images.second), class: 'img_right'
-              = image_tag url_for(post.images.third), class: 'img_right'
-
-        - elsif image_count == 2
-          .post_img.two-images
-            .img_two_wrapper
-              = image_tag url_for(post.images.first), class: 'img_two'
-              = image_tag url_for(post.images.second), class: 'img_two'
-
-        - elsif image_count == 1
-          .post_img.one-image
-            = image_tag url_for(post.images.first), class: 'img_one' 
 - unless Rails.env.test?
   = javascript_pack_tag 'follow'
