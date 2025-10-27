@@ -64,9 +64,9 @@
           - if post.like_count == 0
             No likes yet
           - elsif post.like_count == 1
-            = "#{post.likes.last.user.account_name} liked your post"
+            = "#{post.likes.last.user.account_name} liked this post"
           -else
-            = "#{post.likes.last.user.account_name} and #{post.like_count - 1} other liked your post"
+            = "#{post.likes.last.user.account_name} and #{post.like_count - 1} other liked this post"
         .post-footer 
           %p= post.user.account_name
           %p.post_content_detail= post.content
