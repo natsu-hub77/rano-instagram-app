@@ -16,6 +16,3 @@
 
 :javascript
   const currentUserId = #{current_user&.id || 'null'};
-
-- if !Rails.env.test? || Rails.env.system_test?
-  = javascript_pack_tag 'comment'
