@@ -15,29 +15,28 @@ const appendAllComment = (comment) => {
       ? `/posts/${comment.post_id}/comments/${comment.id}/edit`
       : ''
 
-$('.comments-container').append(
-  `     
-    <div class="comment-post">
-      <div class="comment-icon">
-        <a href="${profileLink}">
-          <img src="${avatarUrl}" alt="${comment.account_name}" />
-        </a>
+  $('.comments-container').append(
+    `     
+      <div class="comment-post">
+        <div class="comment-icon">
+          <a href="${profileLink}">
+            <img src="${avatarUrl}" alt="${comment.account_name}" />
+          </a>
+        </div>
+        <div class="comment-body">
+          <a href="${editLink}">
+            <div class="comment-account-name">
+              <p>${comment.account_name}</p>
+            </div>
+            <div class="comment-content">
+              <p>${comment.content}</p>
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="comment-body">
-        <a href="${editLink}">
-          <div class="comment-account-name">
-            <p>${comment.account_name}</p>
-          </div>
-          <div class="comment-content">
-            <p>${comment.content}</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  `
-  )
+    `
+    )
 }
-
 
 document.addEventListener('turbo:load', () => {
   const dataset = $('#comment-index').data()
@@ -63,10 +62,6 @@ document.addEventListener('turbo:load', () => {
     $(document).on('click', '.comment-submit-btn', function(e){
       e.preventDefault();
       const content = $('#comment_content').val();
-      const dataset = $('#comment-index').data();
-      if (!dataset) return;
-      const postId = dataset.postId;
-      const currentUserId = dataset.currentUserId
 
       if (!content) {
         window.alert('コメントを入力してください')
