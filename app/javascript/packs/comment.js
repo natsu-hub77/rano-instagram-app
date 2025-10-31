@@ -2,7 +2,7 @@ import axios from 'axios'
 import $ from 'jquery'
 import Rails from "@rails/ujs"
 
-const appendAllComment = (comment) => {
+const appendAllComment = (comment, currentUserId) => {
   const avatarUrl = comment.avatar_url || '/assets/avatar.svg'
 
   const profileLink =
@@ -35,12 +35,13 @@ const appendAllComment = (comment) => {
         </div>
       </div>
     `
-    )
+  )
 }
 
 document.addEventListener('turbo:load', () => {
   const dataset = $('#comment-index').data()
   if (!dataset) return
+
   const postId = dataset.postId
   const currentUserId = dataset.currentUserId
 
@@ -52,7 +53,7 @@ document.addEventListener('turbo:load', () => {
       $('.comments-container').empty()
 
       comments.forEach((comment) => {
-        appendAllComment(comment)
+        appendAllComment(comment, currentUserId)
       })
     })
  
@@ -68,14 +69,14 @@ document.addEventListener('turbo:load', () => {
         return
       } 
 
-        axios.post(`/posts/${postId}/comments`, {
-          comment: {content: content}
+      axios.post(`/posts/${postId}/comments`, {
+        comment: {content: content}
+      })
+        .then((res) => {
+          const comment = res.data
+          appendAllComment(comment, currentUserId)
+          $('#comment_content').val('')
         })
-          .then((res) => {
-            const comment = res.data
-            appendAllComment(comment)
-            $('#comment_content').val('')
-          })
     })
   }
 })

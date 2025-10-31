@@ -13,6 +13,3 @@
         = image_submit_tag("timeline/comment.png", class: "comment-submit-btn")
       .flex-grow
         = f.text_area :content, class: 'comment-submit'
-
-:javascript
-  const currentUserId = #{current_user&.id || 'null'};
