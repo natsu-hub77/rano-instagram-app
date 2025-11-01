@@ -1,8 +1,6 @@
-import axios from 'axios'
 import $ from 'jquery'
-import Rails from "@rails/ujs"
+import axios from 'modules/axios'
 
-axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
 
 function updateLikeMessage(postElement, data) {
   const likeMessage = $(postElement).find('.like-message');

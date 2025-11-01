@@ -1,6 +1,5 @@
-import axios from 'axios'
 import $ from 'jquery'
-import Rails from "@rails/ujs"
+import axios from 'modules/axios'
 
 const appendAllComment = (comment, currentUserId) => {
   const avatarUrl = comment.avatar_url || '/assets/avatar.svg'

@@ -1,8 +1,5 @@
-import axios from 'axios'
 import $ from 'jquery'
-import Rails from "@rails/ujs"
-
-axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
+import axios from 'modules/axios'
 
 document.addEventListener('turbo:load', () => {
   const accountElement = $('.account_info');
