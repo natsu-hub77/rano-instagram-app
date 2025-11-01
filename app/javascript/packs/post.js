@@ -1,24 +1,12 @@
 import axios from 'axios'
 import $ from 'jquery'
 import Rails from "@rails/ujs"
+import {
+  listenInactiveHeartEvent,
+  listenActiveHeartEvent
+} from 'modules/handle_heart'
 
 axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
-
-function updateLikeMessage(postElement, data) {
-  const likeMessage = $(postElement).find('.like-message');
-  const count = data.like_count;
-  const lastLiker = data.last_liker;
-
-  if (count === 0) {
-    likeMessage.text('No likes yet');
-  } else if (count === 1) {
-    likeMessage.text(`${lastLiker} liked your post`);
-  } else {
-    likeMessage.text(`${lastLiker} and ${count - 1} others liked your post`);
-  }
-}
-
-
 
 const handleHeartDisplay = (postElement, hasLiked) => {
   if (hasLiked) {
@@ -32,36 +20,14 @@ document.addEventListener('turbo:load', () => {
   $('.post-actions').each(function() {
     const postId = $(this).data('post-id');
     const postElement = $(this);
-    const postWrapper = $(this).closest('.post_wrapper');
 
     // ハート表示制御
     axios.get(`/posts/${postId}/like`).then((response) => {
       handleHeartDisplay(postElement, response.data.hasLiked);
     });
 
-    // いいね登録
-    postElement.find('.inactive-heart-button').on('click', (e) => {
-      e.preventDefault();
-      axios.post(`/posts/${postId}/like`).then((response) => {
-        if (response.data.status === 'ok') {
-          postElement.find('.active-heart-button').removeClass('hidden');
-          postElement.find('.inactive-heart-button').addClass('hidden');
-          updateLikeMessage(postWrapper.find('.post_content'), response.data);
-        }
-      });
-    });
+    listenInactiveHeartEvent(postElement, postId)
+    listenActiveHeartEvent(postElement, postId)
 
-    // いいね解除
-    postElement.find('.active-heart-button').on('click', (e) => {
-      e.preventDefault();
-      axios.delete(`/posts/${postId}/like`).then((response) => {
-        if (response.data.status === 'ok') {
-          postElement.find('.active-heart-button').addClass('hidden');
-          postElement.find('.inactive-heart-button').removeClass('hidden');
-          updateLikeMessage(postWrapper.find('.post_content'), response.data);
-        }
-      });
-    });
   });
 });
-
