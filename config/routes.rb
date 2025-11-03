@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   resource :timeline, only: [:show]
 
   resources :posts do
-    # resource :like, only: [:show, :create, :destroy]
     resources :comments
   end
 
