@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resource :timeline, only: [:show]
 
   resources :posts do
-    resource :like, only: [:show, :create, :destroy]
+    # resource :like, only: [:show, :create, :destroy]
     resources :comments
   end
 
@@ -34,6 +34,11 @@ Rails.application.routes.draw do
       get :followers
     end
   end
-
   resource :profile, only: [:show, :update]
+
+  namespace :api, default: {format: :json } do
+    scope '/posts/:post_id' do
+      resource :like, only: [:show, :create, :destroy]
+    end
+  end
 end

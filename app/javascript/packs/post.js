@@ -19,7 +19,7 @@ document.addEventListener('turbo:load', () => {
     const postElement = $(this);
 
     // ハート表示制御
-    axios.get(`/posts/${postId}/like`).then((response) => {
+    axios.get(`/api/posts/${postId}/like`).then((response) => {
       handleHeartDisplay(postElement, response.data.hasLiked);
     });
 

@@ -19,7 +19,7 @@ function updateLikeMessage(postElement, data) {
 const listenInactiveHeartEvent = (postElement, postId) => {
   postElement.find('.inactive-heart-button').on('click', (e) => {
   e.preventDefault();
-  axios.post(`/posts/${postId}/like`).then((response) => {
+  axios.post(`/api/posts/${postId}/like`).then((response) => {
     if (response.data.status === 'ok') {
       postElement.find('.active-heart-button').removeClass('hidden');
       postElement.find('.inactive-heart-button').addClass('hidden');
@@ -34,7 +34,7 @@ const listenInactiveHeartEvent = (postElement, postId) => {
 const listenActiveHeartEvent = (postElement, postId) => {
   postElement.find('.active-heart-button').on('click', (e) => {
     e.preventDefault();
-    axios.delete(`/posts/${postId}/like`).then((response) => {
+    axios.delete(`/api/posts/${postId}/like`).then((response) => {
       if (response.data.status === 'ok') {
         postElement.find('.active-heart-button').addClass('hidden');
         postElement.find('.inactive-heart-button').removeClass('hidden');
