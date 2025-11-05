@@ -70,3 +70,24 @@
 .hidden-file-field {
   display: none;
 }
+
+.delete-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+  background: none;
+  border: 1px solid #BDBDBD;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  border: none;
+  font-size: 16px;
+  color: #BDBDBD;
+}
+
+.delete-btn:hover {
+  background-color: #E0E0E0;
+  color: #333;
+}

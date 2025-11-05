@@ -1,17 +1,1 @@
-.container.form-container
-  %ul
-    - @post.errors.full_messages.each do |message|
-      %li= message
-  = form_with( model: @post, url: posts_path, method: 'post', local: true, multipart: true ) do |f|
-    .post-nav 
-      = link_to 'Cancel', :back, class: 'cancel-btn'
-      %p Status 
-      = f.submit 'Post', class: 'post-btn'
-    .account-imformation
-      .account_icon 
-        = image_tag current_user.profile&.avatar&.attached? ? url_for(current_user.profile.avatar) : 'avatar.svg', id: 'avatar-upload', class: 'avatar_img' , style: 'cursor: pointer;'
-      .account_post_name= current_user.account_name
-    = f.text_field :content, class: 'post-content',placeholder: "What's on your mind ?"
-    .file-upload-wrapper 
-      = f.label :images, '+ Album', class: 'upload-label'
-      = f.file_field :images, multiple: true, class: 'hidden-file-field', style: 'display: none;'
+= render 'form', post: @post

@@ -1,30 +1,17 @@
-import axios from 'axios'
 import $ from 'jquery'
-import Rails from "@rails/ujs"
-
-axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
+import axios from 'modules/axios'
+import { 
+  loadFollow, 
+  submitFollowRequest,
+  submitUnfollowRequest
+} from 'modules/handle_follow'
 
 document.addEventListener('turbo:load', () => {
   const accountElement = $('.account_info');
   const userId = accountElement.data('user-id');
 
   if (userId) {
-    // 初期表示処理
-    axios.get(`/accounts/${userId}.json`)
-      .then((response) => {
-        const hasFollowed = response.data.has_followed;
-        const FollowCount = response.data.FollowCount;
-
-        if (hasFollowed) {
-          accountElement.find('.unfollow-btn').removeClass('hidden');
-          accountElement.find('.follow-btn').addClass('hidden');
-        } else {
-          accountElement.find('.follow-btn').removeClass('hidden');
-          accountElement.find('.unfollow-btn').addClass('hidden');
-        }
-
-        $('.stat-follower-number').text(FollowCount);
-      });
+    loadFollow(userId, accountElement)
   }
 });
 
@@ -38,15 +25,7 @@ document.addEventListener('turbo:load', () => {
     const userId = $('.account_info').data('user-id'); 
     const accountElement = $('.account_info');
 
-    axios.post(`/accounts/${userId}/follows`)
-      .then((response) => {
-        const FollowCount = response.data.followCount;
-        if (response.data.status === 'followed') {
-          accountElement.find('.unfollow-btn').removeClass('hidden');
-          accountElement.find('.follow-btn').addClass('hidden');
-          $('.stat-follower-number').text(FollowCount);
-        }
-      });
+    submitFollowRequest(userId, accountElement)
   });
 
   // アンフォロー
@@ -56,14 +35,6 @@ document.addEventListener('turbo:load', () => {
     const userId = $('.account_info').data('user-id');
     const accountElement = $('.account_info');
 
-    axios.post(`/accounts/${userId}/unfollows`)
-      .then((response) => {
-        const FollowCount = response.data.followCount;
-        if (response.data.status === 'unfollowed') {
-          accountElement.find('.follow-btn').removeClass('hidden');
-          accountElement.find('.unfollow-btn').addClass('hidden');
-          $('.stat-follower-number').text(FollowCount);
-        }
-      });
+    submitUnfollowRequest(userId, accountElement)
   }); 
 }

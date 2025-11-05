@@ -1,8 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
   const avatarUpload = document.getElementById('avatar-upload');
   const avatarInput = document.getElementById('avatar-input');
   const form = document.getElementById('profile-form');
   if (!avatarInput || !form) return;
+
+  if (avatarUpload.dataset.bound) return;
+  avatarUpload.dataset.bound = true;
 
   avatarUpload.addEventListener('click', () => {
     avatarInput.click();

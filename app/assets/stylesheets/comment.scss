@@ -1,3 +1,17 @@
+.container.comment-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 画面全体の高さに */
+  overflow: hidden; /* 内部でスクロール制御するため */
+}
+
+.comments-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+  margin-bottom: 100px; /* 下部フォーム分の余白を確保 */
+}
+
 .comment-nav {
   position: relative;
   width: 100%; 
@@ -19,6 +33,16 @@
 .comment-post {
   display: flex;
   margin-bottom: 30px;
+
+  .comment-body {
+    flex: 1;
+    min-width: 0;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+  }
 }
 
 .comment-account-name {
@@ -37,9 +61,13 @@
 
 .comment-content {
   p {
-  size: 14px;
+  font-size: 14px;
   color: #9B9B9B;
   padding: 5px 10px;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
   }
 }
 
@@ -82,4 +110,14 @@
   display: contents;
 }
 
-
+.comment-edit {
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #BDBDBD;
+  font-size: 16px;
+  padding: 10px 0px;
+  margin-bottom: 30px;
+}
+.comment-edit::placeholder {
+    color: #BDBDBD;
+}

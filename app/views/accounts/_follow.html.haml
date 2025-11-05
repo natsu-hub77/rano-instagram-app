@@ -1,0 +1,22 @@
+.container 
+  .follow-nav 
+    = link_to (request.referer || root_path) do
+      = image_tag 'Tabs.svg', class: 'back-btn'
+    %p Followings 
+
+  - @users.each do |user|
+    = link_to account_path(user.id), class: 'follow-link ' do
+      .follow-information 
+        .follow-icon
+          - if user.profile&.avatar&.attached?
+            = image_tag user.profile.avatar
+          - else
+            = image_tag("avatar.svg")
+        .follow-body
+          .follow-name
+            %p= user.account_name
+          .follow-seen 
+            - if user.last_seen_at.present?
+              %p= I18n.with_locale(:en) {"#{time_ago_in_words(user.last_seen_at)} ago" }
+            - else
+              %p Never logged in

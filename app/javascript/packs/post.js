@@ -1,8 +1,9 @@
-import axios from 'axios'
 import $ from 'jquery'
-import Rails from "@rails/ujs"
-
-axios.defaults.headers.common['X-CSRF-Token'] = Rails.csrfToken()
+import axios from 'modules/axios'
+import {
+  listenInactiveHeartEvent,
+  listenActiveHeartEvent
+} from 'modules/handle_heart'
 
 const handleHeartDisplay = (postElement, hasLiked) => {
   if (hasLiked) {
@@ -17,52 +18,13 @@ document.addEventListener('turbo:load', () => {
     const postId = $(this).data('post-id');
     const postElement = $(this);
 
-    axios.get(`/posts/${postId}/like`)
-      .then((response) => {
-        const hasLiked = response.data.hasLiked
-        handleHeartDisplay(postElement, hasLiked);
-      });
-  });
-
-  $('.post-actions').each(function() {
-    const postId = $(this).data('post-id');
-    const postElement = $(this);
-    
-    $(this).find('.inactive-heart-button').on('click', function(e) {
-      e.preventDefault();
-
-      axios.post(`/posts/${postId}/like`)
-        .then((response) => {
-          if (response.data.status === 'ok') {
-            postElement.find('.active-heart-button').removeClass('hidden')
-            postElement.find('.inactive-heart-button').addClass('hidden')
-          } 
-        }) 
-        .catch((e) => {
-          window.alert('Error');
-          console.log(e);
-        });
+    // ハート表示制御
+    axios.get(`/api/posts/${postId}/like`).then((response) => {
+      handleHeartDisplay(postElement, response.data.hasLiked);
     });
+
+    listenInactiveHeartEvent(postElement, postId)
+    listenActiveHeartEvent(postElement, postId)
+
   });
-
-  $('.post-actions').each(function() {
-    const postId = $(this).data('post-id');
-    const postElement = $(this);
-  
-    $(this).find('.active-heart-button').on('click', function(e) {
-      e.preventDefault();
-
-      axios.delete(`/posts/${postId}/like`)
-        .then((response) => {
-          if (response.data.status === 'ok') {
-            postElement.find('.active-heart-button').addClass('hidden')
-            postElement.find('.inactive-heart-button').removeClass('hidden')
-          } 
-        })
-        .catch((e) => {
-          window.alert('Error');
-          console.log(e);
-        });
-      });
-    });
 });

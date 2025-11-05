@@ -17,13 +17,30 @@ class CommentsController < ApplicationController
     @comment.save!
 
     render json: @comment
-    # if @comment.save
-    #   redirect_to post_comments_path(@post), notice: 'コメントを追加しました'
-    # else
-    #   @comments = @post.comments
-    #   flash.now[:error] = '更新できませんでした'
-    #   render :index, status: :unprocessable_entity
-    # end
+  end
+
+  def edit
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+
+    if @comment.update(comment_params)
+        redirect_to post_comments_path(@post), notice: 'Updated successfully'
+    else
+      flash.now[:error] = 'Update failed'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy!
+    redirect_to post_comments_path(@post), status: :see_other, notice: 'Deleted successfully'
   end
 
   private

@@ -20,9 +20,8 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resource :timeline, only: [:show]
 
-  resources :posts, only: [:show, :new, :create] do
-    resource :like, only: [:show, :create, :destroy]
-    resources :comments, only: [:index, :create]
+  resources :posts do
+    resources :comments
   end
 
   resources :accounts, only: [:show] do
@@ -34,6 +33,11 @@ Rails.application.routes.draw do
       get :followers
     end
   end
-
   resource :profile, only: [:show, :update]
+
+  namespace :api, default: {format: :json } do
+    scope '/posts/:post_id' do
+      resource :like, only: [:show, :create, :destroy]
+    end
+  end
 end

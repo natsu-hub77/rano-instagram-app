@@ -41,6 +41,8 @@ gem 'haml-rails'
 gem 'sassc-rails'
 gem 'faker'
 gem 'sidekiq'
+gem 'aws-sdk-s3', require: false
+
 
 # Use Active torage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -59,6 +61,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'dotenv-rails'
 end
 
 group :development do

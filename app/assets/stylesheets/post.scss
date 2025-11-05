@@ -12,8 +12,9 @@
   width: 25px;
   height: auto; 
   position: relative;
-  z-index: auto;  
-  pointer-events: none;
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .dropdown {
@@ -110,6 +111,27 @@
   display: block;
 }
 
+/* 2枚横並び */
+.two-images .img_two_wrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.img_two {
+  width: calc(50% - 2px);
+  object-fit: cover;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* 1枚だけ */
+.one-image .img_one {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 .post-actions {
   display: flex;
   gap: 10px;
@@ -125,9 +147,14 @@ p {
   margin: 0px;
 }
 
+.post_content_detail {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;  
+}
+
 .post-footer {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
-
-

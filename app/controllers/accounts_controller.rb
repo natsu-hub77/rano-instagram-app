@@ -6,6 +6,8 @@ class AccountsController < ApplicationController
       redirect_to profile_path and return
     end
 
+    @posts = @user.posts.with_attached_images.order(created_at: :desc)
+
     respond_to do |format|
       format.html
       format.json do
