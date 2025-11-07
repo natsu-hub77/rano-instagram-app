@@ -1,0 +1,16 @@
+{
+  "name": "rano-instagram-app",
+  "description": "This is instgram-app",
+  "keywords": [],
+  "website": "",
+  "repository": "https://github.com/natsu-hub77/rano-instagram-app",
+  "env": {},
+  "addons": [
+    "heroku-postgresql:essential-0"
+  ],
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }, {
+    "url": "heroku/ruby"
+  }]
+}
