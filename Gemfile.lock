@@ -162,6 +162,7 @@ GEM
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
+    foreman (0.89.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     haml (6.3.0)
@@ -457,6 +458,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  foreman
   haml-rails
   importmap-rails
   jbuilder
