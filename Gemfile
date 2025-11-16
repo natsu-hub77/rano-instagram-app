@@ -43,6 +43,7 @@ gem 'sassc-rails'
 gem 'faker'
 gem 'sidekiq'
 gem 'aws-sdk-s3', require: false
+gem 'foreman'
 
 
 # Use Active torage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
